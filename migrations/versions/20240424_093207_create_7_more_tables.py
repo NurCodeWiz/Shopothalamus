@@ -37,6 +37,6 @@ def downgrade():
         batch_op.drop_column('created_at')
         batch_op.drop_column('last_name')
         batch_op.drop_column('first_name')
-        # batch_op.drop_column('provider_name')
+        batch_op.drop_column('provider_name')
 
     # ### end Alembic commands ###
