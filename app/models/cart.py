@@ -10,7 +10,7 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    user_id = Column(Integer, add_prefix_for_prod('users.id'), nullable=False)
     isOrdered = Column(Boolean, default=False, nullable=False)
     createdAt = Column(DateTime, default=datetime.utcnow)
     updatedAt = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
