@@ -16,7 +16,7 @@ class Cart(db.Model):
     updatedAt = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
-    users = relationship('User', back_populates='carts')
+    user = relationship('User', back_populates='carts')
     cart_items = relationship('CartItem', back_populates='cart', cascade='all, delete-orphan')
     orders = relationship('Order', back_populates='cart',cascade='all, delete-orphan')
 

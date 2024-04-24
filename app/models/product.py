@@ -9,23 +9,30 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
 
-id = Column(Integer, primary_key=True)
-provider_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-name = Column(String(255), nullable=False)
-price = Column(Numeric(10, 2), nullable=False)
-category = Column(String(255), nullable=False)
-description = Column(Text)
-is_deleted = Column(Boolean, default=False)
-created_at = Column(DateTime, default=datetime.utcnow)
-updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    id = Column(Integer, primary_key=True)
+    provider_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    name = Column(String(255), nullable=False)
+    price = Column(Numeric(10, 2), nullable=False)
+    category = Column(String(255), nullable=False)
+    description = Column(Text)
+    is_deleted = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-provider = relationship('User', back_populates='products')
-reviews = relationship('Review', back_populates='product', cascade='all, delete-orphan')
-cart_items = relationship('CartItem', back_populates='product', cascade='all, delete-orphan')
-product_orders = relationship('ProductOrder', back_populates='product', cascade='all, delete-orphan')
-images = db.relationship("ProductImage", back_populates="product", cascade='all, delete-orphan')
+    provider = relationship('User', back_populates='products')
+    reviews = relationship('Review', back_populates='product', cascade='all, delete-orphan')
+    cart_items = relationship('CartItem', back_populates='product', cascade='all, delete-orphan')
+    product_orders = relationship('ProductOrder', back_populates='product', cascade='all, delete-orphan')
+    images = db.relationship("ProductImage", back_populates="product", cascade='all, delete-orphan')
 
-def to_dict(self):
+    def to_dict(self):
+        product_images = {}
+        for image in self.images:
+            product_images[image.id] = {
+                "id": image.id,
+                "url": image.url,
+                "preview": image.preview
+            }
         return {
             'id': self.id,
             'provider_id': self.provider_id,

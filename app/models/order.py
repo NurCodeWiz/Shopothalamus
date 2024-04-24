@@ -10,7 +10,7 @@ class Order(db.Model):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    cart_id = Column(Integer, ForeignKey(add_prefix_for_prod('cart.id')), nullable=False)
+    cart_id = Column(Integer, ForeignKey(add_prefix_for_prod('carts.id')), nullable=False)
     status = Column(String(255), nullable=False)
     createdAt = Column(DateTime, default=datetime.utcnow)
     updatedAt = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -16,7 +16,7 @@ class CartItem(db.Model):
 
 
     cart = relationship('Cart', back_populates='cart_items')
-    products = relationship('Product', back_populates='cart_items')
+    product = relationship('Product', back_populates='cart_items')
 
     def to_dict(self):
         return {
