@@ -9,6 +9,7 @@ db = SQLAlchemy()
 
 # helper function for adding prefix to foreign key column references in production
 def add_prefix_for_prod(attr):
+    return attr
     if environment == "production":
         return f"{SCHEMA}.{attr}"
     else:
