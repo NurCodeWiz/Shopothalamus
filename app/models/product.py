@@ -1,5 +1,5 @@
 from .db import db,environment,SCHEMA,add_prefix_for_prod
-from sqlalchemy import Column, Integer, Numeric, String, Boolean, Text, DateTime
+from sqlalchemy import Column, Integer, Numeric, String, Boolean, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
@@ -10,7 +10,7 @@ class Product(db.Model):
 
 
     id = Column(Integer, primary_key=True)
-    provider_id = Column(Integer, add_prefix_for_prod('users.id'), nullable=False)
+    provider_id = Column(Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = Column(String(255), nullable=False)
     price = Column(Numeric(10, 2), nullable=False)
     category = Column(String(255), nullable=False)
