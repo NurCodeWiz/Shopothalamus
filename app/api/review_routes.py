@@ -9,7 +9,8 @@ reviews_routes = Blueprint('reviews', __name__)
 @reviews_routes.route('/reviews', methods=["GET"])
 def get_all_reviews():
     reviews = Review.query.all()
-    return {review.id: review.to_dict() for review in reviews}
+    reviews_dict = {review.id: review.to_dict() for review in reviews}
+    return reviews_dict
 
 # GET ALL REVIEWS FOR A SPECIFIC PRODUCT
 @reviews_routes.route('/products/<int:product_id>/reviews', methods=['GET'])
@@ -29,6 +30,8 @@ def post_review(product_id):
     review_content = form.review_content.data
     rating = form.rating.data
     image = form.image.data
+    print('====>',request.form)  # Log form data to see what is received
+    print('=====>',request.files)
 
     if not form.validate_on_submit():
         return {"errors": form.errors}, 400
