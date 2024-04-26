@@ -28,7 +28,7 @@ export default function ProductsByCategory() {
     useEffect(() => {
         dispatch(getProductsByCategory(categoryTitle()))
     }, [dispatch, category])
-
+    if (!products)return null
     return (
         <div className="catalog-wrapper">
             <h2>{categoryTitle()} Products</h2>

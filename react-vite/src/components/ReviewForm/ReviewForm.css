@@ -1,0 +1,123 @@
+.review-editor-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px;
+    width: 80%;
+    max-width: 600px;
+    align-self: center;
+}
+
+.product-review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-review-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.star-rating span {
+    color: #ffd700;
+    margin-right: 5px;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.image-preview {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-top: 10px;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.loading-message {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.plant-icon {
+    margin-left: 10px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-editor-container {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .product-review-image {
+        width: 80px;
+        height: 80px;
+    }
+}
