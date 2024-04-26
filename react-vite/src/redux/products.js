@@ -54,6 +54,7 @@ export const getSingleProduct = (productId) => async(dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(singleProduct(data))
+        console.log("singleproductdata:",data)
     } else {
         const errors = await response.json();
         return errors;
