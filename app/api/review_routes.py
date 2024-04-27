@@ -30,7 +30,7 @@ def post_review(product_id):
     review_content = form.review_content.data
     rating = form.rating.data
     image = form.image.data
-    print('====>',request.form)  # Log form data to see what is received
+    print('====>',request.form)
     print('=====>',request.files)
 
     if not form.validate_on_submit():

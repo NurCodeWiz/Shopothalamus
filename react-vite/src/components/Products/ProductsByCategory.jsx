@@ -4,6 +4,7 @@ import { getProductsByCategory } from '../../redux/products';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom"
 import "./productsByCategory.css"
+import { useCallback } from 'react';
 
 export default function ProductsByCategory() {
     const { category } = useParams()
@@ -24,10 +25,11 @@ export default function ProductsByCategory() {
                 return "Category Not Found";
         }
     }
+    const stableCategoryTitle = useCallback(categoryTitle, [category]);
 
     useEffect(() => {
-        dispatch(getProductsByCategory(categoryTitle()))
-    }, [dispatch, category])
+        dispatch(getProductsByCategory(stableCategoryTitle()))
+    }, [dispatch, stableCategoryTitle])
     if (!products)return null
     return (
         <div className="catalog-wrapper">
