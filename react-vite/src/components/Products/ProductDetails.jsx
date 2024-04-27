@@ -7,9 +7,10 @@ import { reviewsByProduct} from '../../redux/reviews'
 import { getAllUsersThunk } from '../../redux/users';
 import { MdOutlineStar,MdOutlineStarBorder } from "react-icons/md";
 import ReviewForm from '../ReviewForm/ReviewForm';
-import { useModal } from "../../context/Modal";
+// import { useModal } from "../../context/Modal";
 import DeleteReview from "../DeleteReview/DeleteReview";
-
+import { NavLink } from 'react-router-dom';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
 export default function ProductDetails() {
     const dispatch = useDispatch();
@@ -20,8 +21,8 @@ export default function ProductDetails() {
     const [displayImageURL, setDisplayImageURL] = useState('');
     const [date, setDate] = useState('')
     const [showReviewForm, setShowReviewForm] = useState(false);
-    const { setModalContent } = useModal();
-
+    // const { setModalContent } = useModal();
+    // const [delRev, setDelRev ]= useState(false)
     useEffect(() => {
         const today = new Date();
         const deliveryDate = new Date(today);
@@ -45,8 +46,13 @@ export default function ProductDetails() {
     if (!products || !products[productId]) {
         return <div>Loading...</div>;
     }
+    // const handleReviewDeleted = () => {
+    //     dispatch(reviewsByProduct(productId)); // Re-fetch reviews after one is deleted
+    // };
 
-
+    // const renderDelete = () => {
+    //     setDelRev(!delRev)
+    // }
     console.log(reviews)
 
     const singleProduct = products[productId];
@@ -87,14 +93,14 @@ export default function ProductDetails() {
     const hasReview = allProductReviews.some(review =>
         review?.userId === user?.id);
 
-        const openDeleteModal = (reviewId) => {
-            setModalContent(
-                <DeleteReview
-                    reviewId={reviewId}
-                    onReviewDeleted={() => console.log("Review Deleted!")}
-                />
-            );
-        };
+        // const openDeleteModal = (reviewId) => {
+        //     setModalContent(
+        //         <DeleteReview
+        //             reviewId={reviewId}
+        //             onReviewDeleted={() => console.log("Review Deleted!")}
+        //         />
+        //     );
+        // };
     return (
         <div className="pd-col-wrap">
             <div className="pd-col-left">
@@ -146,10 +152,18 @@ export default function ProductDetails() {
                                     <img className='review-image' src={review?.image_url} alt={review?.image_url || "Review Image"} />
                                 }
                                <p>{review?.review_content}</p>
-                               {review?.userId === user?.id && (
-                            <button onClick={() => openDeleteModal(review?.id)}>
-                                Delete Review
+                               {review?.user_id === user?.id && (
+                            <div className='review-buttons'>
+                            <button className='review-btns'>
+                                <NavLink to={`/products/${productId}/review/${review?.id}/edit`} className='update-rev-btn'>Update Review</NavLink>
                             </button>
+                            <button className='review-btns delete-rev-btn'>
+                                <OpenModalMenuItem
+                                    itemText='Delete Review'
+                                    modalComponent={<DeleteReview reviewId={review?.id} productId={productId} onReviewDeleted={() => {}}/>}
+                                />
+                            </button>
+                        </div>
                         )}
                             </div>
                         </div>

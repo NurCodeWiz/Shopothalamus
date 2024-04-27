@@ -3,14 +3,17 @@ import { useDispatch } from 'react-redux';
 import { deleteReviewThunk } from "../../redux/reviews"
 import './DeleteReview.css';
 
+
+
 function DeleteReview({ reviewId, onReviewDeleted }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-
     const handleDeleteReview = async () => {
-        await dispatch(deleteReviewThunk(reviewId));
+        dispatch(deleteReviewThunk(reviewId));
         onReviewDeleted();
         closeModal();
+
+
     };
 
 

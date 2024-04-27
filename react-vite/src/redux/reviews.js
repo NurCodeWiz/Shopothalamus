@@ -143,9 +143,21 @@ function reviewReducer(state = {}, action){
             return {...state, reviews: action.reviews}
         }
         case CREATE_NEW_REVIEW: {
-            return{...state, ...action.newReview}
+            console.log('+++++++++', state)
+            // return{...state, ...action.newReview}
+            // const newReviewId = action.newReview.id;
+            // return {
+            // ...state,
+            // reviews: {
+            //     ...state.reviews,
+            //     [newReviewId]: action.newReview
+            const newState = {...state}
+            newState.reviews[action.newReview.id] = action.newReview
+            return newState
 
         }
+
+
         case UPDATE_REVIEW: {
             const newState = {...state}
             newState.reviews[action.review.id] = action.review

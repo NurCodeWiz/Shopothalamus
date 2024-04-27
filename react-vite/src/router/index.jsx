@@ -5,7 +5,7 @@ import Layout from './Layout';
 import ProductDetails from '../components/Products/ProductDetails';
 import ProductsByCategory from '../components/Products/ProductsByCategory';
 import AllProducts from '../components/Products/AllProducts';
-
+import UpdateReview from '../components/UpdateReview/UpdateReview';
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/products",
         element: <AllProducts />
+      },
+      {
+        path:'/products/:productId/review/:reviewId/edit',
+        element: <UpdateReview />
       },
 
 

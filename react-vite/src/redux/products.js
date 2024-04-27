@@ -70,8 +70,15 @@ export default function productsReducer(state = initialState, action) {
             return {...state, products: action.products, allProductsIds: Object.keys(action.products) }
         case PRODUCTS_BY_CATEGORY:
             return {...state, products: action.products, allProductsIds: Object.keys(action.products)}
-        case SINGLE_PRODUCT:
-            return {...state, products: action.product}
+        case SINGLE_PRODUCT: {
+
+            const newState = {...state};
+            if (newState.products === null) {
+                newState.products = {};
+            }
+            newState.products[action.product.id] = action.product;
+            return newState;
+        }
         default:
             return state;
     }

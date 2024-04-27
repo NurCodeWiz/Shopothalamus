@@ -56,16 +56,19 @@ function ReviewForm({ productId, buttonText, hideForm }) {
 
                 const formData = formDataFromObject(payload);
                 console.log("Form Data:", Array.from(formData.entries()));
-                await dispatch(createReviewThunk(productId, formData));
-                hideForm();
-            } catch (error) {
+            await dispatch(createReviewThunk(productId, formData));
+            hideForm();
+        } catch (error) {
                 console.error('Failed to create review:', error);
                 setErrors(prevErrors => ({ ...prevErrors, submit: 'Failed to submit review. Please try again.' }));
-            } finally {
+        } finally {
                 setIsSubmitting(false);
-            }
         }
-    };
+    } else {
+
+            setErrors(formErrors);
+    }
+};
 
 
     if (isSubmitting) {
