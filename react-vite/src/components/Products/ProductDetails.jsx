@@ -6,21 +6,33 @@ import "./ProductDetails.css";
 import { reviewsByProduct} from '../../redux/reviews'
 import { getAllUsersThunk } from '../../redux/users';
 import { MdOutlineStar,MdOutlineStarBorder } from "react-icons/md";
+import Carts from '../Carts/Carts'
 import ReviewForm from '../ReviewForm/ReviewForm';
 // import { useModal } from "../../context/Modal";
 import DeleteReview from "../DeleteReview/DeleteReview";
 import { NavLink } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import { addItemToCartThunk, updateQuantityThunk } from "../../redux/cartItems";
+import { createCartThunk, allUserCartsThunk } from "../../redux/cart";
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
+
 
 export default function ProductDetails() {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const { products } = useSelector(state => state.products)
-    const { reviews } = useSelector(state => state.reviews)
+    const  reviews  = useSelector(state => state.reviews)
+    console.log('===>', (useSelector(state => state.reviews)))
+    // const reviewId = Object.keys(reviews);
+    // console.log('@reviewIds',reviewIds)
+
     const user = useSelector(state => state.session.user);
     const [displayImageURL, setDisplayImageURL] = useState('');
     const [date, setDate] = useState('')
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const allCarts = useSelector(state => state.carts.Carts)
+    const [quantity, setQuantity] = useState('1')
     // const { setModalContent } = useModal();
     // const [delRev, setDelRev ]= useState(false)
     useEffect(() => {
@@ -40,12 +52,25 @@ export default function ProductDetails() {
         } else {
             setDisplayImageURL(products[productId].images[0]?.url);
         }
-    }, [dispatch, productId, products,reviews]);
+
+        if (!Object.values(allCarts)?.length) {
+            console.log('allUserCartsThunk', allCarts)
+            dispatch(allUserCartsThunk())
+        }
+
+    }, [dispatch, productId, products, reviews]);
+    console.log(Object.keys(reviews).length)
 
 
     if (!products || !products[productId]) {
-        return <div>Loading...</div>;
+        return <div>LoadingXXXX...</div>;
     }
+
+    if (!allCarts.Carts)
+    {
+        return <div>LoadingXXXX...</div>;
+    }
+
     // const handleReviewDeleted = () => {
     //     dispatch(reviewsByProduct(productId)); // Re-fetch reviews after one is deleted
     // };
@@ -54,6 +79,81 @@ export default function ProductDetails() {
     //     setDelRev(!delRev)
     // }
     console.log(reviews)
+    console.log('allcarts-new:', allCarts)
+    let activeCartObj
+    if(Object.values(allCarts.Carts)?.length){
+        for(let cart of allCarts.Carts){
+            console.log('cart->>>>>>>:', cart)
+            if(cart?.isOrdered == false){
+                activeCartObj = cart
+            }
+        }
+    }
+
+    let findInCart = activeCartObj?.cart_items?.find(item => item?.product_id == productId)
+    console.log('activeCartObj->:', activeCartObj)
+    console.log('findInCart->:', findInCart)
+
+    // const addToCart = async (productId) => {
+    //     let addItem = {
+    //         cart_id: activeCartObj?.id,
+    //         product_id: productId,
+    //         quantity: quantity
+    //     }
+    //     if(activeCartObj && findInCart){
+    //         // product is already in the cart
+    //         let updateQty = {
+    //             product_id: productId,
+    //             quantity: (parseInt(findInCart?.quantity) + parseInt(quantity))
+    //         }
+    //         return await dispatch(updateQuantityThunk(updateQty, findInCart?.id))
+    //     }
+    //     if(activeCartObj){
+    //         // Has an open cart, add product to this cart
+    //         await dispatch(addItemToCartThunk(addItem, activeCartObj?.id))
+    //     }
+    //     else{
+    //         // create new cart, add product to new cart
+    //         const createCart = await dispatch(createCartThunk())
+    //         const newCartId = createCart?.id;
+    //         await dispatch(addItemToCartThunk(addItem, newCartId))
+    //     }
+    //     return
+    // }
+    const addToCart = async (productId) => {
+        let addItem = {
+            product_id: productId,
+            quantity: quantity,
+        };
+
+        // If there's an active cart and the product is already in the cart, update the quantity.
+        if (activeCartObj && findInCart) {
+            let updateQty = {
+                product_id: productId,
+                quantity: (parseInt(findInCart.quantity) + parseInt(quantity)),
+            };
+            await dispatch(updateQuantityThunk(updateQty, findInCart.id));
+        } else if (activeCartObj) {
+            // If there's an active cart, add the product to this cart.
+            console.log('activeCartObj........', activeCartObj.id)
+            addItem.cart_id = activeCartObj.id;
+            await dispatch(addItemToCartThunk(addItem, addItem.cart_id));
+        } else {
+            // If there's no active cart, try to create a new cart and add the product to the new cart.
+            try {
+                const createdCartResponse = await dispatch(createCartThunk());
+                const newCartId = createdCartResponse?.payload?.id; // Make sure this path matches the structure of your response
+                if (newCartId) {
+                    addItem.cart_id = newCartId;
+                    await dispatch(addItemToCartThunk(addItem));
+                } else {
+                    console.error("Failed to create a new cart. No cart ID returned from createCartThunk.");
+                }
+            } catch (error) {
+                console.error("Error in createCartThunk:", error);
+            }
+        }
+    };
 
     const singleProduct = products[productId];
     console.log('====>',singleProduct)
@@ -63,9 +163,6 @@ export default function ProductDetails() {
     console.log('#####',allProductReviews)
 
 
-    const addToCart = () => {
-
-    };
     function formatDateV2(date) {
         const parsedDate = new Date(date);
         const options = {
@@ -90,6 +187,16 @@ export default function ProductDetails() {
         return starArray
     }
 
+
+
+
+
+
+
+
+
+
+
     const hasReview = allProductReviews.some(review =>
         review?.userId === user?.id);
 
@@ -101,6 +208,7 @@ export default function ProductDetails() {
         //         />
         //     );
         // };
+
     return (
         <div className="pd-col-wrap">
             <div className="pd-col-left">
@@ -178,6 +286,44 @@ export default function ProductDetails() {
                         <button>Delete Listing</button>
                     </div>
                 }
+                {user && (
+                        <div className="cart-item-feature">
+                            <form className='options-container'>
+                                <select onChange={(e) => setQuantity(e.target.value)}>
+                                    <option value = '1'>Qty: 1</option>
+                                    <option value = '2'>Qty: 2</option>
+                                    <option value = '3'>Qty: 3</option>
+                                    <option value = '4'>Qty: 4</option>
+                                    <option value = '5'>Qty: 5</option>
+                                    <option value = '6'>Qty: 6</option>
+                                    <option value = '7'>Qty: 7</option>
+                                    <option value = '8'>Qty: 8</option>
+                                    <option value = '9'>Qty: 9</option>
+                                    <option value = '10'>Qty: 10</option>
+                                </select>
+                            </form>
+                            <button className='add-to-cart-btn details-add-cart-btn' onClick={() => addToCart(singleProduct?.id)}>
+                                <OpenModalMenuItem
+                                    itemText='Add to cart'
+                                    modalComponent={<Carts />}
+                                />
+                            </button>
+                        </div>
+                    )}
+                    {!user && (
+                        <p className='msg-to-add-cart detail-log-sign-msg'>
+                            <OpenModalMenuItem
+                                itemText={<span className='login-signup-text'>Log In</span>}
+                                modalComponent={<LoginFormModal />}
+                                className='login-signup-text'
+                            />
+                            or
+                            <OpenModalMenuItem
+                                itemText={<span className='login-signup-text'>Sign Up</span>}
+                                modalComponent={<SignupFormModal />}
+                            />
+                        to add this item to your cart</p>)
+                    }
                 {/* <div className="sec-pricing">
                   <div className="price-wrap">
                    <span className="symbol-currency">$</span>
@@ -204,11 +350,11 @@ export default function ProductDetails() {
                 </div>
                 ))}
                 </div>
-                    {singleProduct.provider_id !== user?.id &&
+                    {/* {singleProduct.provider_id !== user?.id &&
                     <div className="pd-user-btns">
                         <button onClick={() => addToCart(singleProduct)}>Add to cart</button>
                     </div>
-                }
+                } */}
                 <p>{singleProduct.description}</p>
                 <div className="pd-contact-seller">
                 <div className="sec-pricing">

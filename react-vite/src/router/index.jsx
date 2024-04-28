@@ -6,6 +6,8 @@ import ProductDetails from '../components/Products/ProductDetails';
 import ProductsByCategory from '../components/Products/ProductsByCategory';
 import AllProducts from '../components/Products/AllProducts';
 import UpdateReview from '../components/UpdateReview/UpdateReview';
+import Carts from '../components/Carts/Carts'
+
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -38,6 +40,11 @@ export const router = createBrowserRouter([
         path:'/products/:productId/review/:reviewId/edit',
         element: <UpdateReview />
       },
+      {
+        path:'/carts',
+        element: <Carts />
+      },
+
 
 
     ],

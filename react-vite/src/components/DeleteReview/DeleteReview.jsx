@@ -9,7 +9,7 @@ function DeleteReview({ reviewId, onReviewDeleted }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const handleDeleteReview = async () => {
-        dispatch(deleteReviewThunk(reviewId));
+        await dispatch(deleteReviewThunk(reviewId));
         onReviewDeleted();
         closeModal();
 

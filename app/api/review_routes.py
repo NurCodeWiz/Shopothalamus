@@ -30,8 +30,8 @@ def post_review(product_id):
     review_content = form.review_content.data
     rating = form.rating.data
     image = form.image.data
-    print('====>',request.form)
-    print('=====>',request.files)
+    # print('====>',request.form)
+    # print('=====>',request.files)
 
     if not form.validate_on_submit():
         return {"errors": form.errors}, 400
@@ -82,8 +82,8 @@ def delete_review(review_id):
     db.session.commit()
 
 
-    if deleted["imageUrl"] != None:
-        removed = s3_remove_file(deleted['imageUrl'])
+    if deleted["image_url"] != None:
+        removed = s3_remove_file(deleted['image_url'])
 
         if removed != True:
 

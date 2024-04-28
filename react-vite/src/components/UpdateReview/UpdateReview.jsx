@@ -8,7 +8,7 @@ import { reviewsByProduct } from "../../redux/reviews";
 function UpdateReview(){
     const triggerDispatch = useDispatch();
     const {reviewID, productID} = useParams();
-    const reviewList = useSelector(state => state.reviews.detail);
+    const reviewList = useSelector(state => state.reviews?.Reviews);
 
     useEffect(() => {
         triggerDispatch(reviewsByProduct(productID));
