@@ -6,14 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
 import { deleteCartItemThunk, updateQuantityThunk, allCartItemsThunk } from "../../redux/cartItems";
 import './Carts.css';
-
-
+import { getSingleProduct } from '../../redux/products';
+import { useParams } from "react-router-dom";
 function Carts() {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
     const userCarts = useSelector(state => state.carts.Carts);
     const cartItems = useSelector(state => state.cartItems.CartItems);
-
+    const { productId } = useParams();
     console.log('Carts:',userCarts)
     // const allProducts = useSelector(state => state.products.Products);
     const allProducts = useSelector(state => state.products)
@@ -23,20 +23,21 @@ function Carts() {
     const [initiateCheckout, setInitiateCheckout] = useState(false);
     const [showModalMessage, setShowModalMessage] = useState(false);
     const { closeModal } = useModal();
-
+    const singleProduct = useSelector(state => state.products);
     let currentActiveCart;
     let activeCartId;
 
     useEffect(() => {
         dispatch(allUserCartsThunk());
         dispatch(getAllProducts());
+        dispatch(getSingleProduct(productId));
         if (activeCartId) {
             dispatch(allCartItemsThunk(activeCartId));
         }
         if (!location.pathname.includes('carts')) {
             setShowModalMessage(true);
         }
-    }, [dispatch, refreshQuantity, removeItem, quantitySelected, currentActiveCart?.length, userCarts?.length, allProducts?.length, activeCartId]);
+    }, [dispatch, refreshQuantity, removeItem, quantitySelected, currentActiveCart?.length, userCarts?.length, allProducts?.length, activeCartId,productId]);
 
     if (!currentUser || !allProducts) {
         return <div className="loading-text">Loading... </div>;
@@ -118,6 +119,14 @@ function Carts() {
     console.log('allProducts', Object.values(allProducts.products));
     let allProducts_new = Object.values(allProducts.products);
 
+    if (!singleProduct || !singleProduct.products) {
+        return <div className="loading-text">sss... </div>;
+    }
+    console.log('singleProduct', singleProduct.products[productId])
+    console.log('singleProduct', productId)
+
+    // Problem here for product images
+    const allProductImages = singleProduct.images || [];
     return (
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>
@@ -128,7 +137,8 @@ function Carts() {
             {cartItemsList?.map(item => (
                 <div className='cart-item-details' key={item?.id}>
                     <NavLink to={`/products/${item?.product_id}`} className='cart-item-image-link'>
-                        <img src={allProducts[(item?.product_id) - 1]?.image_url} className="cart-product-image"/>
+                    {/* <img src={image_url} alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/> */}
+                    <img src={allProductImages.length > 0 ? allProductImages[0].url : 'https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-04-28+at+11.22.28+PM.png' } alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/>
                     </NavLink>
                     <div className='cart-item-info'>
                         <NavLink className='item-details' to={`/products/${item?.product_id}`}>

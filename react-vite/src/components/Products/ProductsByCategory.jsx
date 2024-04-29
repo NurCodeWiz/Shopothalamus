@@ -31,6 +31,7 @@ export default function ProductsByCategory() {
         dispatch(getProductsByCategory(stableCategoryTitle()))
     }, [dispatch, stableCategoryTitle])
     if (!products)return null
+
     return (
         <div className="catalog-wrapper">
             <h2>{categoryTitle()} Products</h2>
@@ -38,13 +39,16 @@ export default function ProductsByCategory() {
                 {!products ? null : Object.values(products).map(product => (
                     <div key={product.id} className="catalog-item">
                         <NavLink to={`/products/${product.id}`}>
-                            <img className="item-image" src={product.images[0].url} alt={`${product.name}`} />
+                            {/* <img className="item-image" src={product.images[0].url} alt={`${product.name}`} /> */}
+                            <img className="item-image"
+                                src={product.images && product.images.length > 0 ? product.images[0].url : 'https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-04-28+at+11.22.28+PM.png'}
+                                alt={`${product.name}`} />
                             <div className="item-info">
                                 <p>{product.name}</p>
                                 <h3>${product.price}</h3>
                             </div>
                         </NavLink>
-                        <button>Add to cart</button>
+
                     </div>
                 ))}
             </div>

@@ -58,7 +58,7 @@ export default function ProductDetails() {
             dispatch(allUserCartsThunk())
         }
 
-    }, [dispatch, productId, products, reviews]);
+    }, [dispatch, productId, products, reviews, allCarts]);
     console.log(Object.keys(reviews).length)
 
 
@@ -94,39 +94,13 @@ export default function ProductDetails() {
     console.log('activeCartObj->:', activeCartObj)
     console.log('findInCart->:', findInCart)
 
-    // const addToCart = async (productId) => {
-    //     let addItem = {
-    //         cart_id: activeCartObj?.id,
-    //         product_id: productId,
-    //         quantity: quantity
-    //     }
-    //     if(activeCartObj && findInCart){
-    //         // product is already in the cart
-    //         let updateQty = {
-    //             product_id: productId,
-    //             quantity: (parseInt(findInCart?.quantity) + parseInt(quantity))
-    //         }
-    //         return await dispatch(updateQuantityThunk(updateQty, findInCart?.id))
-    //     }
-    //     if(activeCartObj){
-    //         // Has an open cart, add product to this cart
-    //         await dispatch(addItemToCartThunk(addItem, activeCartObj?.id))
-    //     }
-    //     else{
-    //         // create new cart, add product to new cart
-    //         const createCart = await dispatch(createCartThunk())
-    //         const newCartId = createCart?.id;
-    //         await dispatch(addItemToCartThunk(addItem, newCartId))
-    //     }
-    //     return
-    // }
     const addToCart = async (productId) => {
         let addItem = {
             product_id: productId,
             quantity: quantity,
         };
 
-        // If there's an active cart and the product is already in the cart, update the quantity.
+        //  update the quantity if active cart and the product is already in the cart,.
         if (activeCartObj && findInCart) {
             let updateQty = {
                 product_id: productId,
@@ -134,15 +108,15 @@ export default function ProductDetails() {
             };
             await dispatch(updateQuantityThunk(updateQty, findInCart.id));
         } else if (activeCartObj) {
-            // If there's an active cart, add the product to this cart.
+            // add the product to active cart
             console.log('activeCartObj........', activeCartObj.id)
             addItem.cart_id = activeCartObj.id;
             await dispatch(addItemToCartThunk(addItem, addItem.cart_id));
         } else {
-            // If there's no active cart, try to create a new cart and add the product to the new cart.
+            // create a new cart and add the product to the new cart if there's no active cart
             try {
                 const createdCartResponse = await dispatch(createCartThunk());
-                const newCartId = createdCartResponse?.payload?.id; // Make sure this path matches the structure of your response
+                const newCartId = createdCartResponse?.payload?.id;
                 if (newCartId) {
                     addItem.cart_id = newCartId;
                     await dispatch(addItemToCartThunk(addItem));
@@ -186,15 +160,6 @@ export default function ProductDetails() {
         })
         return starArray
     }
-
-
-
-
-
-
-
-
-
 
 
     const hasReview = allProductReviews.some(review =>
