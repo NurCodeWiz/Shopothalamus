@@ -4,17 +4,17 @@ import { createReviewThunk, reviewsByProduct} from "../../redux/reviews";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
 import './ReviewForm.css';
 
-function formDataFromObject(obj) {
-    const formData = new FormData();
-    Object.entries(obj).forEach(([key, value]) => {
-        if (value instanceof File) {
-            formData.append(key, value, value.name);
-        } else {
-            formData.append(key, value);
-        }
-    });
-    return formData;
-}
+// function formDataFromObject(obj) {
+//     const formData = new FormData();
+//     Object.entries(obj).forEach(([key, value]) => {
+//         if (value instanceof File) {
+//             formData.append(key, value, value.name);
+//         } else {
+//             formData.append(key, value);
+//         }
+//     });
+//     return formData;
+// }
 
 function ReviewForm({ productId, buttonText, hideForm }) {
     const dispatch = useDispatch();
@@ -84,17 +84,17 @@ const handleSubmit = async (event) => {
         };
 
         try {
-            // FormData should be created here directly, not via a separate function.
-            const formData = formDataFromObject(payload);
+
+            const formData = new FormData();
             Object.entries(payload).forEach(([key, value]) => {
-                if (value != null) { // Ensure you don't append null values
+                if (value != null) {
                     formData.append(key, value);
                 }
             });
 
             await dispatch(createReviewThunk(productId, formData));
-            await dispatch(reviewsByProduct(productId))
-            hideForm(); // Assuming this will reset or close the form
+            dispatch(reviewsByProduct(productId));
+            hideForm();
         } catch (error) {
             console.error('Failed to create review:', error);
             setErrors(prevErrors => ({
@@ -106,8 +106,6 @@ const handleSubmit = async (event) => {
         }
     }
 };
-
-
 
     if (isSubmitting) {
         return <div>XXLoading...</div>;

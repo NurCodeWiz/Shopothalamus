@@ -8,7 +8,6 @@ import { getAllUsersThunk } from '../../redux/users';
 import { MdOutlineStar,MdOutlineStarBorder } from "react-icons/md";
 import Carts from '../Carts/Carts'
 import ReviewForm from '../ReviewForm/ReviewForm';
-// import { useModal } from "../../context/Modal";
 import DeleteReview from "../DeleteReview/DeleteReview";
 import { NavLink } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -60,6 +59,10 @@ export default function ProductDetails() {
 
     }, [dispatch, productId, products, reviews, allCarts]);
     console.log(Object.keys(reviews).length)
+
+    useEffect(() => {
+        dispatch(getSingleProduct(productId)) // Refresh handling on review change
+    }, [dispatch, productId, reviews]);
 
 
     if (!products || !products[productId]) {
