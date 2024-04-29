@@ -130,8 +130,10 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     dispatch(deleteReview(reviewId))
 }
 
-
-function reviewReducer(state = {}, action){
+const initialState = {
+    reviews: [],
+};
+function reviewReducer(state = initialState, action){
     switch(action.type){
         case GET_ALL_REVIEWS_PRODUCT:{
             return{...state, reviews: action.reviews}
@@ -151,11 +153,27 @@ function reviewReducer(state = {}, action){
             // reviews: {
             //     ...state.reviews,
             //     [newReviewId]: action.newReview
-            const newState = {...state}
-            newState.reviews[action.newReview.id] = action.newReview
-            return newState
+            // const newState = {...state}
+            // newState.reviews[action.newReview.id] = action.newReview
+            // return newState
+            // const { id } = action.newReview; // Extract the ID from the new review
+            const updatedReviews = {
+                ...state.reviews,
+                [action.newReview.id]: action.newReview
+              };
+            return {
+            //    ...state,
+            //    reviews: {
+            //    ...state.reviews,
+            //    [action.newReview.id]: action.newReview // Add the new review to the reviews object using its ID as the key
+            //    }
+                ...state,
+                reviews: updatedReviews
+
+           };
 
         }
+
 
 
         case UPDATE_REVIEW: {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReviewThunk } from "../../redux/reviews";
+import { createReviewThunk, reviewsByProduct} from "../../redux/reviews";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
 import './ReviewForm.css';
 
@@ -22,7 +22,7 @@ function ReviewForm({ productId, buttonText, hideForm }) {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const [review_content, setreview_content] = useState('');
-    const [image_url, setimage_url] = useState(review_content?.image_url)
+    const [image_url, setimage_url] = useState(null)
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -40,39 +40,77 @@ function ReviewForm({ productId, buttonText, hideForm }) {
         return newErrors;
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formErrors = validate();
-        setErrors(formErrors);
+//     const handleSubmit = async (event) => {
+//         event.preventDefault();
+//         const formErrors = validate();
+//         setErrors(formErrors);
 
-        if (Object.keys(formErrors).length === 0) {
-            setIsSubmitting(true);
-            try {
-                const payload = {
-                    rating,
-                    review_content,
-                    image: image_url
-                };
+//         if (Object.keys(formErrors).length === 0) {
+//             setIsSubmitting(true);
+//             try {
+//                 const payload = {
+//                     rating,
+//                     review_content,
+//                     image: image_url
+//                 };
 
-                const formData = formDataFromObject(payload);
-                console.log("Form Data:", Array.from(formData.entries()));
+
+//                 const formData = formDataFromObject(payload);
+//                 console.log("Form Data:", Array.from(formData.entries()));
+//             await dispatch(createReviewThunk(productId, formData));
+//             hideForm();
+//         } catch (error) {
+//                 console.error('Failed to create review:', error);
+//                 setErrors(prevErrors => ({ ...prevErrors, submit: 'Failed to submit review. Please try again.' }));
+//         } finally {
+//                 setIsSubmitting(false);
+//         }
+//     } else {
+
+//             setErrors(formErrors);
+//     }
+// };
+const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formErrors = validate();
+    setErrors(formErrors);
+
+    if (Object.keys(formErrors).length === 0) {
+        setIsSubmitting(true);
+        const payload = {
+            rating,
+            review_content,
+            image: image_url,
+        };
+
+        try {
+            // FormData should be created here directly, not via a separate function.
+            const formData = formDataFromObject(payload);
+            Object.entries(payload).forEach(([key, value]) => {
+                if (value != null) { // Ensure you don't append null values
+                    formData.append(key, value);
+                }
+            });
+
             await dispatch(createReviewThunk(productId, formData));
-            hideForm();
+            await dispatch(reviewsByProduct(productId))
+            hideForm(); // Assuming this will reset or close the form
         } catch (error) {
-                console.error('Failed to create review:', error);
-                setErrors(prevErrors => ({ ...prevErrors, submit: 'Failed to submit review. Please try again.' }));
+            console.error('Failed to create review:', error);
+            setErrors(prevErrors => ({
+              ...prevErrors,
+              submit: 'Failed to submit review. Please try again.'
+            }));
         } finally {
-                setIsSubmitting(false);
+            setIsSubmitting(false);
         }
-    } else {
-
-            setErrors(formErrors);
     }
 };
 
 
+
     if (isSubmitting) {
-        return <div>Loading...</div>;
+        return <div>XXLoading...</div>;
     }
 
     return (
@@ -112,7 +150,7 @@ function ReviewForm({ productId, buttonText, hideForm }) {
                         onChange={(e) => setreview_content(e.target.value)}
                         placeholder='Describe what you liked or disliked about the product...'
                         rows={5}
-                        cols={50}
+                        cols={40}
                     />
                     {errors.maxReview && <p className='error-message'>{errors.maxReview}</p>}
                     {errors.minReview && <p className='error-message'>{errors.minReview}</p>}
