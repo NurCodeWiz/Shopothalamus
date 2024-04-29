@@ -2,90 +2,141 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
+import { FaXmark } from 'react-icons/fa6';
 import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = {};
 
-    if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
-      });
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      validationErrors.email = "Invalid email address format.";
     }
 
-    const serverResponse = await dispatch(
-      thunkSignup({
+    if (!username) {
+      validationErrors.username = "Username cannot be empty.";
+    } else if (username.length < 4 || username.length > 20) {
+      validationErrors.username = "Username must be between 4 and 20 characters.";
+    }
+
+    if (!firstName) {
+      validationErrors.first_name = "First name cannot be empty.";
+    }
+
+    if (!lastName) {
+      validationErrors.last_name = "Last name cannot be empty.";
+    }
+
+    if (password.length <= 5) {
+      validationErrors.password = "Password must be more than 5 characters.";
+    } else if (password !== confirmPassword) {
+      validationErrors.confirmPassword = "Passwords must match.";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    const serverResponse = await dispatch(thunkSignup({
         email,
         username,
+        firstName,
+        lastName,
         password,
-      })
-    );
+    }));
 
-    if (serverResponse) {
-      setErrors(serverResponse);
+    if (serverResponse?.errors) {
+      setErrors(serverResponse.errors);
     } else {
       closeModal();
     }
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+    <div className="signup-modal-container">
+      <FaXmark className="signup-modal-close" onClick={closeModal} size={30}/>
+      <h1 className="signup-modal-title">Sign Up</h1>
+      {Object.values(errors).map((error, idx) => (
+        <p key={idx} className="signup-error-message">{error}</p>
+      ))}
+      <form onSubmit={handleSubmit} className="signup-form">
+        <div className="signup-input-group">
+          <label className="signup-label">
+            Email
+            <input
+              className="signup-input"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label className="signup-label">
+            Username
+            <input
+              className="signup-input"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+          <label className="signup-label">
+            First Name
+            <input
+              className="signup-input"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+          <label className="signup-label">
+            Last Name
+            <input
+              className="signup-input"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+          <label className="signup-label">
+            Password
+            <input
+              className="signup-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <label className="signup-label">
+            Confirm Password
+            <input
+              className="signup-input"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit" className="signup-submit-button">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

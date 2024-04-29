@@ -2,14 +2,18 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
+import { NavLink, useNavigate } from 'react-router-dom';
+// import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import './Profile.css'
+import OpenModalButton from '../OpenModalButton';
 
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
+  const nav = useNavigate();
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
@@ -37,41 +41,90 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
+    nav('/');
   };
+  const ulClassName = `profile-dropdown${showMenu ? " show" : " hide"}`;
 
+  // return (
+  //   <div className="profile-container">
+  //     <button onClick={toggleMenu}>
+  //       <FaUserCircle size={50} onClick={toggleMenu} className='profile-button'/>
+  //     </button>
+  //     {showMenu && (
+  //       <ul className={"profile-dropdown"} ref={ulRef}>
+  //         {user ? (
+  //           <>
+  //             <li>Hello, {user.firstName} {user.lastName}</li>
+  //             <li>{user.email}</li>
+  //             <li>
+  //               <button onClick={logout}>Log Out</button>
+  //             </li>
+  //           </>
+  //         ) : (
+  //           <>
+  //             <OpenModalMenuItem
+  //               itemText="Log In"
+  //               onItemClick={closeMenu}
+  //               modalComponent={<LoginFormModal />}
+  //             />
+  //             <OpenModalMenuItem
+  //               itemText="Sign Up"
+  //               onItemClick={closeMenu}
+  //               modalComponent={<SignupFormModal />}
+  //             />
+  //           </>
+  //         )}
+  //       </ul>
+  //     )}
+  //   </div>
+  // );
   return (
-    <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
-      </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
-      )}
-    </>
-  );
+    <div className="pc-container">
+        <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' /> {/* Using React Icons correctly */}
+        {showMenu && (
+            <ul className={ulClassName} ref={ulRef}>
+                {user ? (
+                  <>
+                  <li>Hello, {user.firstName} {user.lastName}</li>
+                  <li>{user.email}</li>
+                  <hr className='pc-divider'/>
+                  <div className='pc-links-container'>
+                    <p>
+                      <NavLink to='/orders' className='pc-links pc-orders'>Orders</NavLink>
+                    </p>
+                    <p>
+                      <NavLink to='/products/new' className='pc-links pc-new-listing'>Create New Product</NavLink>
+                    </p>
+                    <p>
+                      <NavLink to={`/products/users/${user.id}`} className='pc-links pc-manage'>Manage Your Products</NavLink>
+                    </p>
+
+
+                  </div>
+
+                  <li>
+                    <button onClick={logout} id='pc-logout-btn'>Log Out</button>
+                  </li>
+                </>
+
+                ) : (
+                  <>
+                    <li>
+                     <OpenModalButton buttonText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
+                    </li>
+                    <li>
+                      <OpenModalButton buttonText="Sign Up" onItemClick={closeMenu}  modalComponent={<SignupFormModal />} />
+                   </li>
+                 </>
+
+
+                )}
+            </ul>
+        )}
+    </div>
+);
+
+
 }
 
 export default ProfileButton;
