@@ -13,6 +13,8 @@ import { NavLink } from 'react-router-dom';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addItemToCartThunk, updateQuantityThunk } from "../../redux/cartItems";
 import { createCartThunk, allUserCartsThunk } from "../../redux/cart";
+import { allCartItemsThunk } from "../../redux/cartItems";
+
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 
@@ -23,6 +25,7 @@ export default function ProductDetails() {
     const { products } = useSelector(state => state.products)
     const  reviews  = useSelector(state => state.reviews)
     const  users  = useSelector(state => state.users)
+    const cartItems = useSelector(state => state.cartItems.CartItems);
 
     console.log('===>', (useSelector(state => state.reviews)))
     // const reviewId = Object.keys(reviews);
@@ -44,6 +47,7 @@ export default function ProductDetails() {
         setDate(deliveryDate.toLocaleDateString('en-US', options));
     }, []);
 
+    let activeCartId;
     useEffect(() => {
         if (!products || !products[productId] || !products[productId].images) {
            dispatch(getSingleProduct(productId))
@@ -58,8 +62,11 @@ export default function ProductDetails() {
             console.log('allUserCartsThunk', allCarts)
             dispatch(allUserCartsThunk())
         }
+        if (user && activeCartId) {
+            dispatch(allCartItemsThunk(activeCartId));
+        }
 
-    }, [dispatch, productId, products, reviews, allCarts, user]);
+    }, [dispatch, productId, products, reviews, allCarts, user, activeCartId]);
     console.log(Object.keys(reviews).length)
 
     useEffect(() => {
@@ -92,10 +99,20 @@ export default function ProductDetails() {
             if(cart?.isOrdered == false){
                 activeCartObj = cart
             }
+            if (activeCartObj?.id) {
+                activeCartId = activeCartObj.id
+            }
         }
     }
+    console.log('activeCartObj-new:', activeCartObj)
 
-    let findInCart = activeCartObj?.cart_items?.find(item => item?.product_id == productId)
+
+    if (user && !cartItems) {
+        return <div>Loading cart items...</div>;
+    }
+
+    console.log('cartItems', cartItems)
+    let findInCart = cartItems?.find(item => item?.product_id == productId)
     console.log('activeCartObj->:', activeCartObj)
     console.log('findInCart->:', findInCart)
 
