@@ -90,3 +90,36 @@ def delete_review(review_id):
             print(removed["errors"])
 
     return {'message': 'Review successfully deleted'}, 200
+
+@reviews_routes.route('/reviews/<int:review_id>/edit', methods=['PUT'])
+@login_required
+def update_review(review_id):
+   review = Review.query.get(review_id)
+   if not review:
+        return jsonify({'error': 'Review not found'}), 404
+   if review.user_id != current_user.id:
+        return jsonify({'error': 'Unauthorized'}), 403
+
+   form = CreateReviewForm()
+   form['csrf_token'].data = request.cookies['csrf_token']
+
+   if form.validate_on_submit():
+        if 'image_url' in request.files:
+            new_img = request.files['image_url']
+            new_img.filename = get_unique_filename(new_img.filename)
+            upload = upload_file_to_s3(new_img)
+            print(upload)
+
+            if "url" not in upload:
+                return jsonify({'error': 'Not a valid image'}), 400
+            new_url = upload['url']
+            review.image_url = new_url
+        else:
+            new_url = None
+
+        review.rating = form.rating.data
+        review.review_content = form.review_content.data
+
+        db.session.commit()
+        return jsonify({"message": 'Review updated successfully.'})
+   return form.errors, 400

@@ -102,13 +102,26 @@ export const createReviewThunk = (productId, reviewFormData) => async (dispatch)
     }
 };
 
+// export const updateReviewThunk = (reviewId, updatedReview) => async (dispatch) => {
+//     const response = await fetch(`/api/reviews/${reviewId}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(updatedReview),
+//     })
+//     if(!response.ok){
+//         throw new Error('Failed to update review')
+//     }
+//     const data = await response.json()
+//     dispatch(updateReview(data))
+//     return data
+// }
+
 export const updateReviewThunk = (reviewId, updatedReview) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
+    const response = await fetch (`/api/reviews/${reviewId}/edit`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedReview),
+        body: updatedReview
     })
     if(!response.ok){
         throw new Error('Failed to update review')
@@ -173,13 +186,8 @@ function reviewReducer(state = initialState, action){
            };
 
         }
-
-
-
         case UPDATE_REVIEW: {
-            const newState = {...state}
-            newState.reviews[action.review.id] = action.review
-            return newState
+            return{...state, ...action.review}
         }
         case DELETE_REVIEW: {
             const newState = {...state}
