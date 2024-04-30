@@ -7,7 +7,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Profile.css'
-import OpenModalButton from '../OpenModalButton';
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+// import OpenModalButton from '../OpenModalButton';
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -45,39 +46,6 @@ function ProfileButton() {
   };
   const ulClassName = `profile-dropdown${showMenu ? " show" : " hide"}`;
 
-  // return (
-  //   <div className="profile-container">
-  //     <button onClick={toggleMenu}>
-  //       <FaUserCircle size={50} onClick={toggleMenu} className='profile-button'/>
-  //     </button>
-  //     {showMenu && (
-  //       <ul className={"profile-dropdown"} ref={ulRef}>
-  //         {user ? (
-  //           <>
-  //             <li>Hello, {user.firstName} {user.lastName}</li>
-  //             <li>{user.email}</li>
-  //             <li>
-  //               <button onClick={logout}>Log Out</button>
-  //             </li>
-  //           </>
-  //         ) : (
-  //           <>
-  //             <OpenModalMenuItem
-  //               itemText="Log In"
-  //               onItemClick={closeMenu}
-  //               modalComponent={<LoginFormModal />}
-  //             />
-  //             <OpenModalMenuItem
-  //               itemText="Sign Up"
-  //               onItemClick={closeMenu}
-  //               modalComponent={<SignupFormModal />}
-  //             />
-  //           </>
-  //         )}
-  //       </ul>
-  //     )}
-  //   </div>
-  // );
   return (
     <div className="pc-container">
         <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' /> {/* Using React Icons correctly */}

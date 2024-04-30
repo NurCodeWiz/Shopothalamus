@@ -116,7 +116,7 @@ function Carts() {
     {
         return <div>Loading the products...</div>;
     }
-    console.log('allProducts', Object.values(allProducts.products));
+    console.log('allProducts---->', Object.values(allProducts.products));
     let allProducts_new = Object.values(allProducts.products);
 
     if (!singleProduct || !singleProduct.products) {
@@ -125,8 +125,13 @@ function Carts() {
     console.log('singleProduct', singleProduct.products[productId])
     console.log('singleProduct', productId)
 
+
     // Problem here for product images
     const allProductImages = singleProduct.images || [];
+    console.log('allProductImages', allProductImages)
+    if (!allProductImages) {
+        return <div className="loading-text">sss... </div>;
+    }
     return (
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReviewThunk, reviewsByProduct} from "../../redux/reviews";
+import { createReviewThunk, reviewsByProduct, updateReviewThunk} from "../../redux/reviews";
 import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
+import { useNavigate } from 'react-router-dom'
 import './ReviewForm.css';
 
 // function formDataFromObject(obj) {
@@ -16,8 +17,9 @@ import './ReviewForm.css';
 //     return formData;
 // }
 
-function ReviewForm({ productId, buttonText, hideForm }) {
+function ReviewForm({productId, review, buttonText, hideForm}) {
     const dispatch = useDispatch();
+    const nav = useNavigate()
     const product = useSelector(state => state.products[productId]);
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
@@ -25,6 +27,11 @@ function ReviewForm({ productId, buttonText, hideForm }) {
     const [image_url, setimage_url] = useState(null)
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    if (!review)
+    {
+        console.log('Create Review only')
+    }
 
     const validate = () => {
         const newErrors = {};
@@ -92,9 +99,18 @@ const handleSubmit = async (event) => {
                 }
             });
 
-            await dispatch(createReviewThunk(productId, formData));
-            dispatch(reviewsByProduct(productId));
-            hideForm();
+            if (!review)
+            {
+                await dispatch(createReviewThunk(productId, formData));
+                dispatch(reviewsByProduct(productId));
+                hideForm();
+            }
+            else
+            {
+                await dispatch(updateReviewThunk(review.id, formData))
+                dispatch(reviewsByProduct(review.product_id));
+                nav(`/products/${review.product_id}`)
+            }
         } catch (error) {
             console.error('Failed to create review:', error);
             setErrors(prevErrors => ({
