@@ -22,6 +22,8 @@ export default function ProductDetails() {
     const { productId } = useParams();
     const { products } = useSelector(state => state.products)
     const  reviews  = useSelector(state => state.reviews)
+    const  users  = useSelector(state => state.users)
+
     console.log('===>', (useSelector(state => state.reviews)))
     // const reviewId = Object.keys(reviews);
     // console.log('@reviewIds',reviewIds)
@@ -52,12 +54,12 @@ export default function ProductDetails() {
             setDisplayImageURL(products[productId].images[0]?.url);
         }
 
-        if (!Object.values(allCarts)?.length) {
+        if (user && !Object.values(allCarts)?.length) {
             console.log('allUserCartsThunk', allCarts)
             dispatch(allUserCartsThunk())
         }
 
-    }, [dispatch, productId, products, reviews, allCarts]);
+    }, [dispatch, productId, products, reviews, allCarts, user]);
     console.log(Object.keys(reviews).length)
 
     useEffect(() => {
@@ -69,7 +71,7 @@ export default function ProductDetails() {
         return <div>LoadingXXXX...</div>;
     }
 
-    if (!allCarts.Carts)
+    if (user && !allCarts.Carts)
     {
         return <div>LoadingXXXX...</div>;
     }
@@ -84,7 +86,7 @@ export default function ProductDetails() {
     console.log(reviews)
     console.log('allcarts-new:', allCarts)
     let activeCartObj
-    if(Object.values(allCarts.Carts)?.length){
+    if(user && Object.values(allCarts.Carts)?.length){
         for(let cart of allCarts.Carts){
             console.log('cart->>>>>>>:', cart)
             if(cart?.isOrdered == false){
@@ -133,7 +135,7 @@ export default function ProductDetails() {
     };
 
     const singleProduct = products[productId];
-    console.log('====>',singleProduct)
+    console.log('singleProduct ====>',singleProduct)
 
     const allProductImages = singleProduct.images || [];
     const allProductReviews = singleProduct.reviews || [];
@@ -166,7 +168,7 @@ export default function ProductDetails() {
 
 
     const hasReview = allProductReviews.some(review =>
-        review?.userId === user?.id);
+        review?.user_id === user?.id);
 
         // const openDeleteModal = (reviewId) => {
         //     setModalContent(
@@ -176,6 +178,24 @@ export default function ProductDetails() {
         //         />
         //     );
         // };
+
+    if (!users || !users.users || !users.users.users)
+    {
+        return <div>Loading users...</div>;
+    }
+    console.log('users--->: ', users)
+
+    let users_array = Object.values(users.users.users)
+    console.log('users: ', users_array[0])
+
+
+    let avg_star = 0
+    for (let r of allProductReviews)
+    {
+        avg_star = avg_star + r.rating
+    }
+    avg_star = avg_star / allProductReviews.length
+    console.log('avg_star', avg_star)
 
     return (
         <div className="pd-col-wrap">
@@ -221,7 +241,7 @@ export default function ProductDetails() {
                 {allProductReviews.map(review => (
                         <div key={review?.id} className="review">
                             <div className='review-cont'>
-                            <p className='review-txt'>{user[review?.user_id]?.firstName} <span className='review-date-txt'>wrote a review on {review && (formatDateV2(review?.createdAt))}</span></p>
+                            <p className='review-txt'>{users_array[review?.user_id - 1]?.first_name} <span className='review-date-txt'>wrote a review on {review && (formatDateV2(review?.createdAt))}</span></p>
                             <p className='rating-icons'>{starsIcon(review?.rating)}</p>
                             <div className="review-content">
                                 {review?.image_url === null ? null :
@@ -309,14 +329,18 @@ export default function ProductDetails() {
         </div> */}
 
                 <p>{singleProduct.name}</p>
-                <span>{/* provider name */}</span>
+                <span>{users_array[singleProduct.provider_id - 1].first_name} </span>
+                <span>{users_array[singleProduct.provider_id - 1].last_name}</span>
                 <div className="rating-description">
-                {
+                {/* {
                 allProductReviews.map(review => (
                 <div key={review?.id} className="review">
-                 <p className='rating-icons'>{starsIcon(review?.rating)}</p>
+                 <p className='rating-icons'>{starsIcon(avg_star)}</p>
                 </div>
-                ))}
+                ))} */}
+                {allProductReviews.length ? (<p className='rating-icons'>{starsIcon(avg_star)}  {avg_star.toFixed(1)}</p>) : null}
+                {!allProductReviews.length && (<p> No reviews </p>)}
+
                 </div>
                     {/* {singleProduct.provider_id !== user?.id &&
                     <div className="pd-user-btns">

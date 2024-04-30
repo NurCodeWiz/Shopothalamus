@@ -2,14 +2,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useEffect } from "react";
 import { reviewsByProduct } from "../../redux/reviews";
 
 function UpdateReview() {
     const dispatch = useDispatch();
     const { productId, reviewId } = useParams();
     const reviewList = useSelector(state => state.reviews);
-    const [showReviewForm, setShowReviewForm] = useState(true);
+    // const [showReviewForm, setShowReviewForm] = useState(true);
 
     useEffect(() => {
         dispatch(reviewsByProduct(productId));
