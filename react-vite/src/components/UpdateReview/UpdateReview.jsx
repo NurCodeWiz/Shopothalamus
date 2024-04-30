@@ -1,56 +1,19 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import ReviewForm from "../ReviewForm/ReviewForm";
-// import { useParams } from "react-router-dom";
-// import { useEffect } from "react";
-// import { reviewsByProduct } from "../../redux/reviews";
 
-
-// function UpdateReview(){
-//     const triggerDispatch = useDispatch();
-//     const {reviewID, productID} = useParams();
-//     const reviewList = useSelector(state => state.reviews?.Reviews);
-
-//     useEffect(() => {
-//         triggerDispatch(reviewsByProduct(productID));
-//     }, [triggerDispatch, productID]);
-
-//     if (!reviewList?.length) {
-//         return <div className="review-loading">Processing...
-
-//         </div>;
-//     }
-
-//     let reviewDetails;
-//     for (let review of reviewList) {
-//         if (review?.id === reviewID) {
-//             reviewDetails = review;
-//         }
-//     }
-
-//     let actionLabel = 'Update';
-//     return (
-//         <>
-//             <h1 className='review-form-header'>Update Review</h1>
-//             <ReviewForm review={reviewDetails} buttonLabel={actionLabel}/>
-//         </>
-//     );
-// }
-
-// export default UpdateReview;
 import { useDispatch, useSelector } from "react-redux";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { reviewsByProduct } from "../../redux/reviews"; // Corrected import path
+import { useEffect, useState} from "react";
+import { reviewsByProduct } from "../../redux/reviews";
 
 function UpdateReview() {
-    const dispatch = useDispatch(); // Changed variable name to 'dispatch'
+    const dispatch = useDispatch();
     const { productId, reviewId } = useParams();
     const reviewList = useSelector(state => state.reviews);
+    const [showReviewForm, setShowReviewForm] = useState(true);
 
     useEffect(() => {
-        dispatch(reviewsByProduct(productId)); // Used 'dispatch' instead of 'triggerDispatch'
-    }, [dispatch, productId]); // Added 'dispatch' to dependency array
+        dispatch(reviewsByProduct(productId));
+    }, [dispatch, productId]);
 
     console.log('productId', productId)
 
@@ -76,8 +39,17 @@ function UpdateReview() {
     return (
         <>
             <h1 className='review-form-header'>Update Review</h1>
-            {/* Corrected prop names */}
-            <ReviewForm review={reviewDetails} buttonText={actionLabel}/>
+            {/* {showReviewForm &&  (
+                    <ReviewForm
+                    review={reviewDetails}
+                        buttonText={actionLabel}
+                        hideForm={() => setShowReviewForm(false)}
+                    />
+                )} */}
+            <ReviewForm
+                review={reviewDetails}
+                buttonText={actionLabel}
+            />
         </>
     );
 }
