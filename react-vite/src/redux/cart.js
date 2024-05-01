@@ -85,7 +85,7 @@ function cartReducer (state = initialState, action){
         case GET_ACTIVE_CART:
             return { ...state, Carts: [action.cart] }; // Assuming `action.cart` returns only the active cart
         case CREATE_NEW_CART:
-            return { ...state, Carts: [...state.Carts, action.cart] };
+            return { ...state, Carts: [action.cart] };
         case REMOVE_CART:
             return { ...state, Carts: [] };
         default:
