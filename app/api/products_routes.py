@@ -10,7 +10,15 @@ def get_all_products():
 
     # print("=================")
     all_products = Product.query.all()
-    return {product.to_dict()["id"]: product.to_dict() for product in all_products}
+    products_with_images = {}
+    for product in all_products:
+        images = product.images
+        product_dict = product.to_dict()
+        product_dict['images'] = [image.to_dict() for image in images]
+        products_with_images[product.id] = product_dict
+    return products_with_images
+
+    # return {product.to_dict()["id"]: product.to_dict() for product in all_products}
 
 @products_routes.route('/<string:category>')
 def get_products_by_category(category):

@@ -48,7 +48,7 @@ function ProfileButton() {
 
   return (
     <div className="pc-container">
-        <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' /> {/* Using React Icons correctly */}
+        <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' />
         {showMenu && (
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
@@ -58,13 +58,13 @@ function ProfileButton() {
                   <hr className='pc-divider'/>
                   <div className='pc-links-container'>
                     <p>
-                      <NavLink to='/orders' className='pc-links pc-orders'>Orders</NavLink>
+                      <NavLink to='/orders' className='pc-links pc-orders'>Orders onClick={() => alert('Feature coming soon')}</NavLink>
                     </p>
                     <p>
-                      <NavLink to='/products/new' className='pc-links pc-new-listing'>Create New Product</NavLink>
+                      <NavLink to='/products/new' className='pc-links pc-new-listing'>Create New Product onClick={() => alert('Feature coming soon')}</NavLink>
                     </p>
                     <p>
-                      <NavLink to={`/products/users/${user.id}`} className='pc-links pc-manage'>Manage Your Products</NavLink>
+                      <NavLink to={`/products/users/${user.id}`} className='pc-links pc-manage'>Manage Your Products onClick={() => alert('Feature coming soon')}</NavLink>
                     </p>
 
 

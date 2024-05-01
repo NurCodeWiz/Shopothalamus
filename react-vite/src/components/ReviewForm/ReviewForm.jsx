@@ -44,6 +44,9 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
         if (review_content.length > 200) {
             newErrors.maxReview = 'Please keep your review under 200 characters.';
         }
+        if(!image_url){
+            newErrors.image_url = 'Image is required for your review.'
+        }
         return newErrors;
     };
 
@@ -83,6 +86,10 @@ const handleSubmit = async (event) => {
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
+        console.log('rating', rating)
+        console.log('review_content', review_content)
+        console.log('image_url', image_url)
+
         setIsSubmitting(true);
         const payload = {
             rating,
@@ -152,6 +159,11 @@ const handleSubmit = async (event) => {
                     </div>
                     {errors.rating && <p className='error-message'>{errors.rating}</p>}
                 </div>
+                {/* <div className='review-section'>
+                    <h2 className='review-heading'>Add a photo</h2>
+                    <input type="file" onChange={(e) => setimage_url(e.target.files[0])} />
+                    {errors.image_url && <p className='error-message'>{errors.image_url}</p>}
+                </div> */}
                 <div className='review-section'>
                     <h2 className='review-heading'>Add a photo</h2>
                     <input type="file" onChange={(e) => setimage_url(e.target.files[0])} />

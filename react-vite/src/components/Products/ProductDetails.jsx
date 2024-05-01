@@ -24,7 +24,7 @@ export default function ProductDetails() {
     const { productId } = useParams();
     const { products } = useSelector(state => state.products)
     const  reviews  = useSelector(state => state.reviews)
-    const  users  = useSelector(state => state.users)
+    // const  users  = useSelector(state => state.users)
     const cartItems = useSelector(state => state.cartItems.CartItems);
 
     console.log('===>', (useSelector(state => state.reviews)))
@@ -196,14 +196,14 @@ export default function ProductDetails() {
         //     );
         // };
 
-    if (!users || !users.users || !users.users.users)
-    {
-        return <div>Loading users...</div>;
-    }
-    console.log('users--->: ', users)
+    // if (!users || !users.users || !users.users.users)
+    // {
+    //     return <div>Loading users...</div>;
+    // }
+    // console.log('users--->: ', users)
 
-    let users_array = Object.values(users.users.users)
-    console.log('users: ', users_array[0])
+    // let users_array = Object.values(users.users.users)
+    // console.log('users: ', users_array[0])
 
 
     let avg_star = 0
@@ -258,7 +258,7 @@ export default function ProductDetails() {
                 {allProductReviews.map(review => (
                         <div key={review?.id} className="review">
                             <div className='review-cont'>
-                            <p className='review-txt'>{users_array[review?.user_id - 1]?.first_name} <span className='review-date-txt'>wrote a review on {review && (formatDateV2(review?.createdAt))}</span></p>
+                            <p className='review-txt'> <span className='review-date-txt'> This review was written on  {review && (formatDateV2(review?.createdAt))}</span></p>
                             <p className='rating-icons'>{starsIcon(review?.rating)}</p>
                             <div className="review-content">
                                 {review?.image_url === null ? null :
@@ -316,19 +316,21 @@ export default function ProductDetails() {
                         </div>
                     )}
                     {!user && (
-                        <p className='msg-to-add-cart detail-log-sign-msg'>
-                            <OpenModalMenuItem
-                                itemText={<span className='login-signup-text'>Log In</span>}
-                                modalComponent={<LoginFormModal />}
-                                className='login-signup-text'
-                            />
-                            or
-                            <OpenModalMenuItem
-                                itemText={<span className='login-signup-text'>Sign Up</span>}
-                                modalComponent={<SignupFormModal />}
-                            />
-                        to add this item to your cart</p>)
-                    }
+                     <div className='msg-to-add-cart detail-log-sign-msg'>
+                        <span>Please </span>
+                        <OpenModalMenuItem
+                            itemText={<span className='login-signup-text'>Log In</span>}
+                            modalComponent={<LoginFormModal />}
+                        />
+                        <span> or </span>
+                        <OpenModalMenuItem
+                            itemText={<span className='login-signup-text'>Sign Up</span>}
+                            modalComponent={<SignupFormModal />}
+                        />
+                        <span> to add this item to your cart.</span>
+                     </div>
+                    )}
+
                 {/* <div className="sec-pricing">
                   <div className="price-wrap">
                    <span className="symbol-currency">$</span>
@@ -346,8 +348,8 @@ export default function ProductDetails() {
         </div> */}
 
                 <p>{singleProduct.name}</p>
-                <span>{users_array[singleProduct.provider_id - 1].first_name} </span>
-                <span>{users_array[singleProduct.provider_id - 1].last_name}</span>
+                {/* <span>{users_array[singleProduct.provider_id - 1].first_name} </span>
+                <span>{users_array[singleProduct.provider_id - 1].last_name}</span> */}
                 <div className="rating-description">
                 {/* {
                 allProductReviews.map(review => (
