@@ -1,75 +1,105 @@
 .pc-container {
-    position: relative;
-    display: inline-block;
-  }
+  position: relative;
+  display: inline-block;
+  right: 20px;
+}
 
-  .pc-btn {
-    cursor: pointer;
-  }
+.pc-btn {
+  cursor: pointer;
+}
 
-  .profile-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    min-width: 160px;
-    border-radius: 4px;
-    overflow: hidden;
-  }
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 40px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  min-width: 160px;
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: center;
+}
 
-  .profile-dropdown.show {
-    display: block;
-  }
+.profile-dropdown.show {
+  display: block;
+}
 
-  .profile-dropdown.hide {
-    display: none;
-  }
+.profile-dropdown.hide {
+  display: none;
+}
 
-  .profile-dropdown li {
-    color: #333333;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
+.profile-dropdown li {
+  color: #333333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
 
-  .profile-dropdown li:hover {
-    background-color: #f2f2f2;
-  }
+.profile-dropdown li:hover {
+  background-color: #f2f2f2;
+}
 
-  .pc-divider {
-    margin: 8px 0;
-    height: 1px;
-    background-color: #e1e1e1;
-  }
+.pc-divider {
+  margin: 8px 0;
+  height: 1px;
+  background-color: #e1e1e1;
+}
 
-  .pc-links-container {
-    padding: 8px 0;
-  }
+.pc-links-container {
+  padding: 8px 0;
+}
 
-  .pc-links {
-    padding: 8px 16px;
-    display: block;
-    color: #555;
-    text-decoration: none;
-  }
+.pc-links, .pc-orders {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 16px;
+  padding: 5px;
+  display: inline-block;
+  margin: 5px 0;
+  outline: none;
+  text-align: left;
+  width: 100%;
+}
 
-  .pc-links:hover {
-    background-color: #ddd;
-  }
+.pc-links:hover, .pc-links:focus,
+.pc-orders:hover, .pc-orders:focus {
+  color: darkblue;
+  text-decoration: none;
+}
 
-  #pc-logout-btn {
-    background: none;
-    border: none;
-    padding: 8px 16px;
-    width: 100%;
-    text-align: left;
-    color: #555;
-    cursor: pointer;
-  }
+#pc-logout-btn {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  color: #555;
+  cursor: pointer;
+}
 
-  #pc-logout-btn:hover {
-    background-color: #ddd;
-  }
+#pc-logout-btn:hover {
+  background-color: #ddd;
+}
+
+#pc-logout-btn {
+  background: none;
+  color: #D32F2F;  /* Red color for emphasis */
+  border: none;
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  display: block; /* Makes the entire area clickable */
+}
+
+#pc-logout-btn:hover {
+  background-color: #F8D7DA; /* Light red background on hover for better visibility */
+  text-decoration: none;
+}
