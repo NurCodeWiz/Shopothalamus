@@ -136,17 +136,11 @@ export default function ProductDetails() {
             await dispatch(addItemToCartThunk(addItem, addItem.cart_id));
         } else {
             // create a new cart and add the product to the new cart if there's no active cart
-            try {
-                const createdCartResponse = await dispatch(createCartThunk());
-                const newCartId = createdCartResponse?.payload?.id;
-                if (newCartId) {
-                    addItem.cart_id = newCartId;
-                    await dispatch(addItemToCartThunk(addItem));
-                } else {
-                    console.error("Failed to create a new cart. No cart ID returned from createCartThunk.");
-                }
-            } catch (error) {
-                console.error("Error in createCartThunk:", error);
+            const createdCartResponse = await dispatch(createCartThunk());
+            const newCartId = createdCartResponse?.id;
+            if (newCartId) {
+                addItem.cart_id = newCartId;
+                await dispatch(addItemToCartThunk(addItem, addItem.cart_id));
             }
         }
     };
