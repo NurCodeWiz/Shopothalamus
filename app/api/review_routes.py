@@ -117,8 +117,19 @@ def update_review(review_id):
         else:
             new_url = None
 
+        image = form.image.data
+        if image != "null":
+            image.filename = unique_filename(image.filename)
+            upload = s3_upload_file(image)
+            if 'url' not in upload:
+                return upload, 400
+        else:
+            upload = {}
+            upload["url"] = None
+
         review.rating = form.rating.data
         review.review_content = form.review_content.data
+        review.image_url = upload["url"]
 
         db.session.commit()
         return jsonify({"message": 'Review updated successfully.'})

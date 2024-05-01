@@ -224,6 +224,38 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.detail-log-sign-msg {
+  background-color: #f0f4f8;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 16px;
+  max-width: 600px;
+}
+
+.detail-log-sign-msg span {
+  color: #333;
+  margin-right: 5px;
+}
+
+.login-signup-text {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.login-signup-text:hover {
+  background-color: #0056b3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+
 
 @media (max-width: 768px) {
     .pd-col-wrap {

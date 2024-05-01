@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -48,7 +48,7 @@ function ProfileButton() {
 
   return (
     <div className="pc-container">
-        <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' /> {/* Using React Icons correctly */}
+        <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' />
         {showMenu && (
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
@@ -56,22 +56,30 @@ function ProfileButton() {
                   <li>Hello, {user.firstName} {user.lastName}</li>
                   <li>{user.email}</li>
                   <hr className='pc-divider'/>
-                  <div className='pc-links-container'>
+                  <div>
                     <p>
-                      <NavLink to='/orders' className='pc-links pc-orders'>Orders</NavLink>
+                    <button className='pc-links pc-orders' onClick={() => alert('Feature coming soon')}>
+                       Orders
+                    </button>
                     </p>
                     <p>
-                      <NavLink to='/products/new' className='pc-links pc-new-listing'>Create New Product</NavLink>
+                    <button className='pc-links pc-new-listing' onClick={() => alert('Feature coming soon')}>
+                       Create New Product
+                    </button>
                     </p>
                     <p>
-                      <NavLink to={`/products/users/${user.id}`} className='pc-links pc-manage'>Manage Your Products</NavLink>
+                    <button className='pc-links pc-manage' onClick={() => alert('Feature coming soon')}>
+                       Manage Your Products
+                    </button>
                     </p>
-
-
                   </div>
 
                   <li>
-                    <button onClick={logout} id='pc-logout-btn'>Log Out</button>
+                  <li>
+                  <button onClick={logout} className='pc-links pc-orders' id='pc-logout-btn'>
+                    Log Out
+                  </button>
+                  </li>
                   </li>
                 </>
 

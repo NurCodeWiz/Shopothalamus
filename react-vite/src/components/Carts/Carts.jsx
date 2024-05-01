@@ -122,16 +122,30 @@ function Carts() {
     if (!singleProduct || !singleProduct.products) {
         return <div className="loading-text">sss... </div>;
     }
-    console.log('singleProduct', singleProduct.products[productId])
-    console.log('singleProduct', productId)
 
+    // const singleObj = singleProduct.products[productId].images
+    // for(const obj in singleObj){
+    // console.log(singleObj[obj].url)
+    console.log('&&&&&&&&&7singleProduct', singleProduct)
+    console.log('singleProduct', productId)
+    console.log(singleProduct)
+
+    console.log('#######singleProduct', singleProduct.products[productId])
 
     // Problem here for product images
     const allProductImages = singleProduct.images || [];
     console.log('allProductImages', allProductImages)
+
     if (!allProductImages) {
         return <div className="loading-text">sss... </div>;
     }
+
+    if(singleProduct[productId] && singleProduct[productId].images) {
+        singleProduct[productId].images.forEach(image => {
+          console.log(image.url);
+        });
+    }
+
     return (
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>
@@ -142,8 +156,16 @@ function Carts() {
             {cartItemsList?.map(item => (
                 <div className='cart-item-details' key={item?.id}>
                     <NavLink to={`/products/${item?.product_id}`} className='cart-item-image-link'>
-                    {/* <img src={image_url} alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/> */}
-                    <img src={allProductImages.length > 0 ? allProductImages[0].url : 'https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-04-28+at+11.22.28+PM.png' } alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/>
+                    {/* <img src={image_url} alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/>*/}
+
+                    <img
+                    key={item?.id}
+                    src={allProducts?.products[item?.product_id]?.images[0]?.url}
+                    alt={`Image`}
+                    className="cart-product-image"
+                    />
+
+                    {/* <img src={allProductImages.length > 0 ? allProductImages[0].url : 'https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-04-28+at+11.22.28+PM.png' } alt={singleProduct?.name || 'Product Image'} className="cart-product-image"/> */}
                     </NavLink>
                     <div className='cart-item-info'>
                         <NavLink className='item-details' to={`/products/${item?.product_id}`}>

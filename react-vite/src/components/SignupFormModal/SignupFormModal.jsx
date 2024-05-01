@@ -52,13 +52,13 @@ function SignupFormModal() {
     const serverResponse = await dispatch(thunkSignup({
         email,
         username,
-        firstName,
-        lastName,
+        first_name:firstName,
+        last_name: lastName,
         password,
     }));
 
-    if (serverResponse?.errors) {
-      setErrors(serverResponse.errors);
+    if (serverResponse) {
+      setErrors(serverResponse);
     } else {
       closeModal();
     }

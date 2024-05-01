@@ -5,7 +5,7 @@ import ProfileButton from "./ProfileButton";
 import { useSelector } from "react-redux";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./Navigation.css";
-
+import { FaLocationDot } from "react-icons/fa6";
 function Navigation() {
   const user = useSelector(state => state.session.user);
 
@@ -28,6 +28,8 @@ function Navigation() {
         </div>
         {user && (
           <div className='logged-user-navigation-bar'>
+            <div id="to-name">Deliver to {user.first_name}</div>
+              <div className='user-address'> <FaLocationDot /> USA </div>
             <NavLink to='/carts' className='cart-text'>
               <BsCart className="cart-favicon"/> Cart
             </NavLink>
