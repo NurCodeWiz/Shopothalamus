@@ -7,6 +7,7 @@ import ProductsByCategory from '../components/Products/ProductsByCategory';
 import AllProducts from '../components/Products/AllProducts';
 import UpdateReview from '../components/UpdateReview/UpdateReview';
 import Carts from '../components/Carts/Carts'
+import FeaturedPage from '../components/HomePage/HomePage';
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element:<FeaturedPage/>,
       },
       {
         path: "login",
