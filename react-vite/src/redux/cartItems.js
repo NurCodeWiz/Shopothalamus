@@ -2,6 +2,7 @@ const GET_ALL_CART_ITEMS = '/carts/cartItems'
 const ADD_PRODUCT_TO_CART = '/carts/cartId/new'
 const EDIT_PRODUCT_QUANTITY = '/carts/cartId/edit'
 const DELETE_CART_PRODUCT = '/carts/cartId/delete'
+const REMOVE_CART_ITEMS = '/carts/removeCartItems'
 
 // ACTION TYPES
 const getAllCartItems = (items) => {
@@ -26,6 +27,11 @@ const deleteCartItem = (item) => {
     return {
         type: DELETE_CART_PRODUCT,
         item
+    }
+}
+export const removeCartItems = () => {
+    return {
+        type: REMOVE_CART_ITEMS
     }
 }
 
@@ -99,6 +105,9 @@ function cartItemsReducer (state ={}, action){
             const deleteState = {...state}
             delete deleteState[action.item]
             return deleteState
+        }
+        case REMOVE_CART_ITEMS:{
+            return{...state, CartItems: null}
         }
         default:
             return state
