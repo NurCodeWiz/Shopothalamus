@@ -107,7 +107,7 @@ export default function ProductDetails() {
     console.log('activeCartObj-new:', activeCartObj)
 
 
-    if (user && !cartItems) {
+    if (user && activeCartId && !cartItems) {
         return <div>Loading cart items...</div>;
     }
 
