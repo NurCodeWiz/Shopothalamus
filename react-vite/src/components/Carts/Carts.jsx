@@ -48,26 +48,29 @@ function Carts() {
         return <div>Loading the cart...</div>;
     }
 
+    console.log('activeCartId', activeCartId)
 
     if(Object.values(userCarts.Carts)?.length){
         for(let cart of userCarts.Carts){
-            if(cart?.isOrdered == false){
+            console.log('cart', cart)
+            if(cart?.isOrdered == false && cart?.user_id == currentUser?.id){
                 currentActiveCart = cart
             }
         }
     }
 
-    console.log('cart->>xxxxx>>>>>:', currentActiveCart.id)
+    console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
     if (currentActiveCart?.id) {
         activeCartId = currentActiveCart.id
     }
 
-    if (!cartItems) {
+    if (currentActiveCart && !cartItems) {
         return <div>Loading cart items...</div>;
     }
+
     console.log('cartItems', cartItems)
 
-    console.log('cart->>xxxxx>>>>>:', currentActiveCart.id)
+    console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
 
     if (!cartItems?.length) {
         return (

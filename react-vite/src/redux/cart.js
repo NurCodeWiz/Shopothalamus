@@ -1,6 +1,7 @@
 const GET_ALL_USERS_CARTS = '/all/carts'
 const GET_ACTIVE_CART ='/carts/active'
 const CREATE_NEW_CART = '/carts/new'
+const REMOVE_CART = 'carts/remove';
 
 // ACTION TYPES
 const getAllCarts = (carts) => {
@@ -24,6 +25,10 @@ const createCart = (cart) => {
         cart
     }
 }
+
+export const removeCart = () => ({
+    type: REMOVE_CART
+  })
 
 
 // THUNKS
@@ -81,6 +86,8 @@ function cartReducer (state = initialState, action){
             return { ...state, Carts: [action.cart] }; // Assuming `action.cart` returns only the active cart
         case CREATE_NEW_CART:
             return { ...state, Carts: [...state.Carts, action.cart] };
+        case REMOVE_CART:
+            return { ...state, Carts: [] };
         default:
             return state;
     }

@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   products: productsReducer,
   cartItems: cartItemsReducer,
-  carts:cartReducer
+  carts: cartReducer
 });
 
 let enhancer;
