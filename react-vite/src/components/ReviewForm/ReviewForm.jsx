@@ -33,6 +33,21 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
         console.log('Create Review only')
     }
 
+    if (review && (!review_content || !rating || !image_url))
+    {
+        if (!review_content && review.review_content) {
+            setreview_content(review.review_content)
+        }
+
+        if (!rating && review.rating) {
+            setRating(review.rating)
+        }
+
+        if (!image_url && review.image_url) {
+            setimage_url(review.image_url)
+        }
+    }
+
     const validate = () => {
         const newErrors = {};
         if (!rating || rating < 1 || rating > 5) {
@@ -41,7 +56,7 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
         if (!review_content || review_content.length < 10) {
             newErrors.minReview = 'Please provide a more detailed review (at least 10 characters).';
         }
-        if (review_content.length > 200) {
+        if (review_content?.length > 200) {
             newErrors.maxReview = 'Please keep your review under 200 characters.';
         }
         if(!image_url){
