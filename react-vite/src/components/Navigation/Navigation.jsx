@@ -24,7 +24,7 @@ function Navigation() {
         </li>
         <div className='search-container'>
           <input type="text" placeholder="Type to search..." className='search-bar'/>
-          <button className='search-btn'><BiSearchAlt2 /></button>
+          <button className='search-btn' onClick={() => alert('Feature coming soon')}><BiSearchAlt2 /></button>
         </div>
         {user && (
           <div className='logged-user-navigation-bar'>

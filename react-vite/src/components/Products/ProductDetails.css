@@ -227,7 +227,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.detail-log-sign-msg {
+.msg-to-add-cart {
   background-color: #f0f4f8;
   border-radius: 10px;
   padding: 20px;
@@ -238,12 +238,12 @@
   max-width: 600px;
 }
 
-.detail-log-sign-msg span {
+.msg-to-add-cart {
   color: #333;
   margin-right: 5px;
 }
 
-.login-signup-text {
+.log-sign-text {
   background-color: #007bff;
   color: white;
   padding: 8px 16px;
@@ -253,7 +253,7 @@
   display: inline-block;
 }
 
-.login-signup-text:hover {
+.log-sign-text:hover {
   background-color: #0056b3;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }

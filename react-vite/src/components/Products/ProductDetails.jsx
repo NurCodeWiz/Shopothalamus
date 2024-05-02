@@ -122,7 +122,7 @@ export default function ProductDetails() {
             quantity: quantity,
         };
 
-        //  update the quantity if active cart and the product is already in the cart,.
+        //  update the quantity if active cart and the product is already in the cart.
         if (activeCartObj && findInCart) {
             let updateQty = {
                 product_id: productId,
@@ -281,8 +281,8 @@ export default function ProductDetails() {
             <div className="pd-col-right">
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">
-                        <button>Update Listing</button>
-                        <button>Delete Listing</button>
+                        <button onClick={() => alert('Feature coming soon')}>Update Listing</button>
+                        <button onClick={() => alert('Feature coming soon')}>Delete Listing</button>
                     </div>
                 }
                 {user && (
@@ -310,36 +310,19 @@ export default function ProductDetails() {
                         </div>
                     )}
                     {!user && (
-                     <div className='msg-to-add-cart detail-log-sign-msg'>
-                        <span>Please </span>
+                     <div className='msg-to-add-cart '>
                         <OpenModalMenuItem
-                            itemText={<span className='login-signup-text'>Log In</span>}
+                            itemText={<span className='log-sign-text'>Log In</span>}
                             modalComponent={<LoginFormModal />}
                         />
                         <span> or </span>
                         <OpenModalMenuItem
-                            itemText={<span className='login-signup-text'>Sign Up</span>}
+                            itemText={<span className='log-sign-text'>Sign Up</span>}
                             modalComponent={<SignupFormModal />}
                         />
                         <span> to add this item to your cart.</span>
                      </div>
                     )}
-
-                {/* <div className="sec-pricing">
-                  <div className="price-wrap">
-                   <span className="symbol-currency">$</span>
-                   <span className="value-price">{singleProduct.price}</span>
-                </div>
-                <div className="ship-detail"> & FREE Returns</div>
-                <div className="ship-detail">
-                  FREE Prime delivery
-                  <span className="date-info">
-                 {date}.<span> Order by</span>
-                <span> 5 p.m of today</span>
-            </span>
-        </div>
-        <h4 className="in-stock">In Stock</h4>
-        </div> */}
 
                 <p>{singleProduct.name}</p>
                 {/* <span>{users_array[singleProduct.provider_id - 1].first_name} </span>
@@ -356,7 +339,7 @@ export default function ProductDetails() {
 
                 </div>
                     {/* {singleProduct.provider_id !== user?.id &&
-                    <div className="pd-user-btns">
+                    <div className="">
                         <button onClick={() => addToCart(singleProduct)}>Add to cart</button>
                     </div>
                 } */}
@@ -377,7 +360,6 @@ export default function ProductDetails() {
                 </div>
                 <h4 className="in-stock">In Stock</h4>
                 </div>
-                    <button>Contact Seller</button>
                 </div>
               </div>
 
