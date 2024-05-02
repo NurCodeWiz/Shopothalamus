@@ -5,6 +5,8 @@
     padding: 20px;
     background: #fff;
     border: 1px solid #ddd;
+    overflow-y: auto;
+
 }
 
 .cart-title {
