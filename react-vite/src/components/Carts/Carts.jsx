@@ -72,15 +72,15 @@ function Carts() {
 
     console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
 
-    if (!cartItems?.length) {
-        return (
-            <div className='empty-cart-display'>
-                <h1 className='empty-cart-title'>Shopping Cart</h1>
-                <hr></hr>
-                <div className='empty-cart-message'>Your cart is empty</div>
-            </div>
-        );
-    }
+    // if (!cartItems?.length) {
+    //     return (
+    //         <div className='empty-cart-display'>
+    //             <h1 className='empty-cart-title'>Shopping Cart</h1>
+    //             <hr></hr>
+    //             <div className='empty-cart-message'>Your cart is empty</div>
+    //         </div>
+    //     );
+    // }
 
     //return <div> STOP...</div>;
 
@@ -107,6 +107,7 @@ function Carts() {
     const proceedToCheckout = async () => {
         for (let item of cartItemsList) {
             await dispatch(deleteCartItemThunk(item?.id));
+            console.log("after dispatching delete cart item", initiateCheckout)
             setInitiateCheckout(true);
         }
         setRemoveItem(!removeItem);

@@ -21,10 +21,10 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
     const dispatch = useDispatch();
     const nav = useNavigate()
     const product = useSelector(state => state.products[productId]);
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(review?.rating);
     const [hover, setHover] = useState(0);
-    const [review_content, setreview_content] = useState('');
-    const [image_url, setimage_url] = useState(null)
+    const [review_content, setreview_content] = useState(review?.review_content);
+    const [image_url, setimage_url] = useState(review?.image_url)
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -131,7 +131,7 @@ const handleSubmit = async (event) => {
 };
 
     if (isSubmitting) {
-        return <div>XXLoading...</div>;
+        return <div>Loading...</div>;
     }
 
     return (
@@ -166,6 +166,9 @@ const handleSubmit = async (event) => {
                 </div> */}
                 <div className='review-section'>
                     <h2 className='review-heading'>Add a photo</h2>
+                    {review && review.image_url && (
+                    <img src={review.image_url} alt="Current Review Image" className="review-image-preview" style={{ width: '150px', height: '100px' }}/>
+                    )}
                     <input type="file" onChange={(e) => setimage_url(e.target.files[0])} />
                     {errors.image_url && <p className='error-message'>{errors.image_url}</p>}
                 </div>

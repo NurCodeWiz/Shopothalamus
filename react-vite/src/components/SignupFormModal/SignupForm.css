@@ -1,96 +1,71 @@
-
+/* General styles for the signup modal container */
 .signup-modal-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
-    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
 }
-
-
-.signup-modal-close {
-    align-self: flex-end;
-    cursor: pointer;
-    margin-bottom: 10px;
-    color: #707070;
-}
-
 
 .signup-modal-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    text-align: center;
     color: #333;
+    margin-bottom: 20px;
 }
 
+.signup-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+}
 
+/* Styles for the form and its elements */
 .signup-form {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-
-
-.signup-input-group {
-    width: 100%;
-}
-
 
 .signup-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
     color: #444;
 }
 
-
 .signup-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 8px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
 }
 
-
-.signup-input:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
-    outline: none;
-}
-
-
-.signup-error-message {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: -5px;
-    margin-bottom: 10px;
-}
-
-
-.signup-submit-button {
-    padding: 10px 20px;
+.signup-button {
+    padding: 10px;
     width: 100%;
-    background-color: #007bff;
-    color: white;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.3s;
 }
 
-.signup-submit-button:hover {
+.signup-button:hover {
     background-color: #0056b3;
 }
 
-
-@media (max-width: 576px) {
-    .signup-modal-container {
-        padding: 15px;
-    }
+/* Error message styling */
+.signup-error-message {
+    color: #b30000;
+    font-size: 12px;
+    margin-top: 2px;
 }

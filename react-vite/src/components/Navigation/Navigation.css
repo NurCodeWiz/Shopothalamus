@@ -22,22 +22,24 @@
 
 .logo-navigation-container {
   display: flex;
+  margin-left: 10px;
+  margin-right: 40px;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  max-height: 50px;
+  max-height: 60px;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
-  top: -90px;
+  top: 30px;
 }
 
 .logo-img {
-  width: 200px;
+  width: 130px;
   position: relative;
-  top: -52px;
+  top: -40px;
   left: -10px;
   z-index: 1;
 }
@@ -78,26 +80,29 @@
 .user-address {
   font-size: smaller;
   color: gray;
+  margin-right: 60px;
 }
 
-.logged-user-navigation-bar, .cart-text {
+.logged-user-navigation-bar {
   display: flex;
   align-items: center;
-  margin-right: 200px;
+  margin-right: 20px;
 }
 .cart-text{
   color: white;
+  margin-right: 50px;
+
 
 }
 
 .cart-favicon {
-  margin-left: 100px;
   color: white;
 }
 
 .categories-bar {
   background-color: #232f3e;
   width: 100%;
+  margin:0 50px,
 }
 
 .category-ul {
@@ -109,7 +114,7 @@
 }
 
 .cat-li {
-  padding: 10px 15px;
+  padding: px 5px;
   color: white;
   text-decoration: none;
   display: flex;
