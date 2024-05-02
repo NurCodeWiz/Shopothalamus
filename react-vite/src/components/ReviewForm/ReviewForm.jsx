@@ -27,6 +27,7 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
     const [image_url, setimage_url] = useState(review?.image_url)
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [single, setSingle] = useState(true);
 
     if (!review)
     {
@@ -35,8 +36,9 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
 
     if (review && (!review_content || !rating || !image_url))
     {
-        if (!review_content && review.review_content) {
+        if (single && !review_content && review.review_content) {
             setreview_content(review.review_content)
+            setSingle(false)
         }
 
         if (!rating && review.rating) {
@@ -46,6 +48,11 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
         if (!image_url && review.image_url) {
             setimage_url(review.image_url)
         }
+    }
+
+    if (single && review_content)
+    {
+        setSingle(false)
     }
 
     const validate = () => {
