@@ -39,9 +39,8 @@
 }
 
 .pd-main-img {
-    max-width: 500px;
+    width: 500px;
     max-height: 500px;
-    width: auto;
     height: auto;
     object-fit: cover;
 
@@ -213,6 +212,10 @@
     color: white;
 }
 
+.page-content {
+  padding:0 20px;
+}
+
 .pd-provider-btns button:last-child:hover {
     background-color: #d32f2f;
 }
@@ -265,6 +268,11 @@
         width: 80px;
         height: 80px;
     }
+    .pd-main-img{
+      width:300px;
+      height:300px;
+    }
+
 }
 
 

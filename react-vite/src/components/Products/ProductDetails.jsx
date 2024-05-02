@@ -209,7 +209,7 @@ export default function ProductDetails() {
     console.log('avg_star', avg_star)
 
     return (
-        <div className="pd-col-wrap">
+        <div className="pd-col-wrap page-content">
             <div className="pd-col-left">
                 <div className="pd-img-wrap">
                     <div className='pd-all-imgs'>
