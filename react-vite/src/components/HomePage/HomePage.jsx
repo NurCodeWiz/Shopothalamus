@@ -2,25 +2,34 @@ import { useEffect, useState } from 'react';
 import "./HomePage.css";
 
 export default function FeaturedPage() {
-    const [imageIndexes, setImageIndexes] = useState([0, 1, 2, 3]);
     const smallerImageUrls = [
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+9.01.44+AM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+9.00.53+AM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.58.41+AM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.59.35+AM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.58.16+AM.png",
+        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.20+PM.png",
+        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.08+PM.png",
+        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.02+PM.png",
+        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.09.48+PM.png"
     ];
+
+    // Helper function to generate four unique indices
+    const generateUniqueIndexes = (size, limit) => {
+        const indices = new Set();
+        while (indices.size < size) {
+            indices.add(Math.floor(Math.random() * limit));
+        }
+        return Array.from(indices);
+    };
+
+    // Initialize imageIndexes with random indices
+    const [imageIndexes, setImageIndexes] = useState(() => generateUniqueIndexes(4, smallerImageUrls.length));
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setImageIndexes([
-                Math.floor(Math.random() * smallerImageUrls.length),
-                Math.floor(Math.random() * smallerImageUrls.length),
-                Math.floor(Math.random() * smallerImageUrls.length),
-                Math.floor(Math.random() * smallerImageUrls.length)
-            ]);
+            setImageIndexes(generateUniqueIndexes(4, smallerImageUrls.length));
         }, 5000); // Change image every 5 seconds
-
         return () => clearInterval(interval);
     }, [smallerImageUrls.length]);
 

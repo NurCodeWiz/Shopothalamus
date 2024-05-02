@@ -1,6 +1,7 @@
 
 .shopping-cart-container {
     max-width: 800px;
+    max-height: 600px;;
     margin: auto;
     padding: 20px;
     background: #fff;
@@ -17,14 +18,14 @@
     border-bottom: 1px solid #ccc;
 }
 
-/* Divider line */
+
 .cart-divider {
     border-top: 1px solid #ccc;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-/* Cart Item Styles */
+
 .cart-item-details {
     display: flex;
     align-items: center;

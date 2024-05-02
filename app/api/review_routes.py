@@ -118,14 +118,18 @@ def update_review(review_id):
             new_url = None
 
         image = form.image.data
-        if image != "null":
+        is_url = isinstance(image, str)
+        if image != "null" and not is_url:
             image.filename = unique_filename(image.filename)
             upload = s3_upload_file(image)
             if 'url' not in upload:
                 return upload, 400
         else:
             upload = {}
-            upload["url"] = None
+            if is_url:
+                upload["url"] = image
+            else:
+                upload["url"] = None
 
         review.rating = form.rating.data
         review.review_content = form.review_content.data
