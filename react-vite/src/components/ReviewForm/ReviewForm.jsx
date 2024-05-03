@@ -160,7 +160,7 @@ const handleSubmit = async (event) => {
         <div className='review-form-container'>
             <div className='product-review-container'>
                 <img src={product?.image_url} alt={product?.name} className='product-review-img' />
-                <p className='product-review-name'>Product: {product?.name}</p>
+                {/* <p className='product-review-name'>Product: {product?.name}</p> */}
             </div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className='review-section'>

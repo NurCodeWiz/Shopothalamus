@@ -29,6 +29,44 @@
     font-weight: bold;
   }
 
+  .review-buttons .review-btns {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.review-buttons .review-btns a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.review-buttons .review-btns:hover,
+.review-buttons .review-btns a:hover {
+    background-color: #0056b3;
+}
+
+.review-buttons .delete-rev-btn {
+    background-color: #dc3545;
+}
+
+.review-buttons .delete-rev-btn:hover,
+.review-buttons .delete-rev-btn a:hover {
+    background-color: #c82333;
+}
+.review-buttons {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
 .pd-all-imgs img {
     width: 100px;
     height: 100px;
