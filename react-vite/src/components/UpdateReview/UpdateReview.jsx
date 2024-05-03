@@ -4,6 +4,7 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { reviewsByProduct } from "../../redux/reviews";
+import "../ReviewForm/ReviewForm.css"
 
 function UpdateReview() {
     const dispatch = useDispatch();
@@ -37,8 +38,8 @@ function UpdateReview() {
     console.log('reviewDetails', reviewDetails)
     let actionLabel = 'Update';
     return (
-        <>
-            <h1 className='review-form-header'>Update Review</h1>
+        <div className='review-form-container'>
+            <h1 className='review-heading'>Update Review</h1>
             {/* {showReviewForm &&  (
                     <ReviewForm
                     review={reviewDetails}
@@ -50,7 +51,7 @@ function UpdateReview() {
                 review={reviewDetails}
                 buttonText={actionLabel}
             />
-        </>
+        </div>
     );
 }
 
