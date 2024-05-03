@@ -68,12 +68,17 @@
 
 
 .pd-all-imgs img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 1px solid #eaeaea;
-    margin-bottom: 0.5rem;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #eaeaea;
+  padding: 5px;
+  border-radius: 4px;
+  gap: 10px;
 }
 
 .pd-main-img {
