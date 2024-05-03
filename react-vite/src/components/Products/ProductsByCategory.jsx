@@ -34,7 +34,7 @@ export default function ProductsByCategory() {
 
     return (
         <div className="catalog-wrapper">
-            <h2>{categoryTitle()} Products</h2>
+            <h2>{categoryTitle()}</h2>
             <div className="catalog-grid">
                 {!products ? null : Object.values(products).map(product => (
                     <div key={product.id} className="catalog-item">
