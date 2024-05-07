@@ -8,6 +8,8 @@ import AllProducts from '../components/Products/AllProducts';
 import UpdateReview from '../components/UpdateReview/UpdateReview';
 import Carts from '../components/Carts/Carts'
 import FeaturedPage from '../components/HomePage/HomePage';
+import OwnedProducts from '../components/OwnedProducts/OwnedProducts';
+import CreateProductForm from '../components/Products/CreateProductForm';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path:'/carts',
         element: <Carts />
+      },
+      {
+        path: '/products/users/:userId',
+        element: <OwnedProducts />
+      },
+      {
+        path: '/products/new',
+        element: <CreateProductForm />
       },
 
 
