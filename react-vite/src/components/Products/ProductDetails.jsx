@@ -281,7 +281,11 @@ export default function ProductDetails() {
             <div className="pd-col-right">
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">
-                        <button onClick={() => alert('Feature coming soon')}>Update Listing</button>
+                         <li className="update">
+                             <NavLink to={`/products/${productId}/edit`} className= "button-style update-button">
+                            Update
+                             </NavLink>
+                         </li>
                         <button onClick={() => alert('Feature coming soon')}>Delete Listing</button>
                     </div>
                 }

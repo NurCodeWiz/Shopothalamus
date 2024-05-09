@@ -37,15 +37,15 @@ function ImageProduct({ setFile }) {
     }
 
     return (
-        <div className="image-input-container">
+        <div className="image-product-container">
             { tempUrl.length ?
-                <div className="input-image-container">
+                <div className="image-container">
                     <FaXmark onClick={cancelFile} />
-                    <img className='input-image' src={tempUrl} alt={tempUrl} />
+                    <img className='product-image' src={tempUrl} alt={tempUrl} />
                 </div>
                 :
                 <>
-                    <div className="image-input">
+                    <div className="image-product">
                         <label>
                             <FaPlus size={40} />
                             <input

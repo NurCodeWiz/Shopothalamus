@@ -4,6 +4,8 @@ const PRODUCTS_BY_CATEGORY = "productsReducer/PRODUCTS_BY_CATEGORY"
 const SINGLE_PRODUCT = "productsReducer/SINGLE_PRODUCT"
 const NEW_PRODUCT = "productsReducer/NEW_PRODUCT"
 const NEW_PRODUCT_IMAGE = 'productsReducer/NEW_PRODUCT_IMAGE'
+const UPDATE_PRODUCT = "productsReducer/UPDATE_PRODUCT"
+const DELETE_PRODUCT_IMAGE = 'productsReducer/DELETE_PRODUCT_IMAGE'
 
 function allProducts(products) {
     return {
@@ -31,6 +33,20 @@ function newProduct(product) {
         product
     }
 }
+
+function updateProduct(product) {
+    return {
+        type: UPDATE_PRODUCT,
+        product
+    }
+}
+
+const deleteProductImage = (productId, imageId) => ({
+    type: DELETE_PRODUCT_IMAGE,
+    productId,
+    imageId
+});
+
 const newProductImage = (productId, image) => ({
     type: NEW_PRODUCT_IMAGE,
     productId,
@@ -98,10 +114,37 @@ export const addProductImageThunk = (productId, formData) => async dispatch => {
     if(response.ok) {
         const data = await response.json();
         dispatch(newProductImage(productId, data))
+        return data
+    } else {
+        const errors = await response.json();
+        return errors
     }
 }
 
+export const updateExistingProduct = (payload, productId) => async(dispatch) => {
+    const response = await fetch(`/api/products/${productId}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+    })
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(updateProduct(data))
+    } else {
+        const errors = await response.json();
+        return errors
+    }
+}
 
+export const deleteProductImageThunk = (imageId) => async dispatch => {
+    const response = await fetch(`/api/product_images/${imageId}`, { method: "DELETE" });
+
+    if(response.ok) {
+        const data = await response.json();
+        console.log('deleteProductImageThunk', data)
+        dispatch(deleteProductImage(data.productId, data.id));
+    }
+}
 
 const initialState = { products: null };
 
@@ -130,16 +173,38 @@ export default function productsReducer(state = initialState, action) {
         }
 
         case NEW_PRODUCT_IMAGE: {
+
+            const updatedProductAfterAdd = {...state.products[action.productId]};
+            updatedProductAfterAdd.images = [...updatedProductAfterAdd.images, action.image];
+            return {
+                ...state,
+                products: {
+                    ...state.products,
+                    [action.productId]: updatedProductAfterAdd
+                }
+            };
+        }
+        case UPDATE_PRODUCT: {
+            const newState = {...state}
+            newState.products[action.product.id] = action.product
+            return newState
+            }
+        case DELETE_PRODUCT_IMAGE: {
             // const newState = {...state}
             // const product = newState.products[+action.productId];
-            // product.product_images = { ...product.product_images }
-            // product.product_images[action.image.id] = action.image
+            // delete product.images[+action.imageId];
             // return newState;
-            const products = state.products || {};
-            const product = products[action.productId] || { product_images: {} };
-            product.product_images[action.image.id] = action.image;
-            products[action.productId] = product;
-            return { ...state, products };
+            const productWithImageDeleted = state.products[action.productId];
+            if (productWithImageDeleted && productWithImageDeleted.product_images) {
+                delete productWithImageDeleted.product_images[action.imageId];
+            }
+            return {
+                ...state,
+                products: {
+                    ...state.products,
+                    [action.productId]: productWithImageDeleted
+                }
+            };
         }
         default:
             return state;
