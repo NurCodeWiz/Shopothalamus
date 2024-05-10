@@ -10,6 +10,7 @@ import Carts from '../components/Carts/Carts'
 import FeaturedPage from '../components/HomePage/HomePage';
 import OwnedProducts from '../components/OwnedProducts/OwnedProducts';
 import CreateProductForm from '../components/Products/CreateProductForm';
+import UpdateProductForm from '../components/Products/UpdateProductForm'
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: '/products/new',
         element: <CreateProductForm />
+      },
+      {
+        path: '/products/:productId/edit',
+        element: <UpdateProductForm />
       },
 
 
