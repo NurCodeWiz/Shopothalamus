@@ -154,3 +154,27 @@ def create_new_image(id):
 
     # If the form doesn't validate successfully, send errors
     return { "errors": form.errors }, 400
+
+@products_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_product(id):
+    product_to_delete = Product.query.filter(Product.id == id).first()
+    if product_to_delete:
+        deleted = product_to_delete.to_dict()
+
+        # Product delete
+        db.session.delete(product_to_delete)
+        db.session.commit()
+
+        # AWS IMAGE DELETE
+        if 'imageUrl' in deleted:
+            image_url = deleted['imageUrl']
+
+            removed = s3_remove_file(image_url)
+
+            if removed != True:
+                print("AWS ERROR:", removed["errors"])
+
+        return {"message": "Successfully deleted"}
+    else:
+        return {"message": "Product was not found."}

@@ -58,12 +58,15 @@ export default function OwnedProducts() {
                 {filteredProducts && Object.values(filteredProducts).map(product => (
                     <div key={product.id} className="each-product">
                         <NavLink to={`/products/${product.id}`} className="each-product-link">
-                            <img className="each-product-image" src={`${Object.values(product.images).filter(productImage => productImage.preview)[0].url}`} alt={`${product.name}`} />
+                            {/* <img className="each-product-image" src={`${Object.values(product.images).filter(productImage => productImage.preview)[0].url}`} alt={`${product?.name}`} /> */}
+                            <img
+                            className="each-product-image"
+                            src={`${Object.values(product.images)?.filter(productImage => productImage)[0]?.url}`}
+                            alt={`${product?.name}`}
+                            />
                             <div className="each-product-info">
                                 <p>{product.name}</p>
                                 <h3>${product.price}</h3>
-                                <button onClick={() => alert('Feature coming soon')}>Update Listing</button>
-                                <button onClick={() => alert('Feature coming soon')}>Delete Listing</button>
                             </div>
                         </NavLink>
                     </div>

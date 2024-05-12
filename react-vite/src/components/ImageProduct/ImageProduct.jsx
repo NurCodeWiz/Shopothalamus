@@ -40,7 +40,7 @@ function ImageProduct({ setFile }) {
         <div className="image-product-container">
             { tempUrl.length ?
                 <div className="image-container">
-                    <FaXmark onClick={cancelFile} />
+                    <FaXmark className="delete-icon" onClick={cancelFile} />
                     <img className='product-image' src={tempUrl} alt={tempUrl} />
                 </div>
                 :

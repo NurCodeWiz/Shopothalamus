@@ -10,7 +10,7 @@ export default function AllProducts() {
     useEffect(() => {
         dispatch(getAllProducts())
     }, [dispatch])
-
+    console.log("Allproducts:",products)
     return (
         <div className="products-page">
             <h2>All products</h2>
