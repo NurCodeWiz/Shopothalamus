@@ -7,6 +7,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
 .edit-product-input, .edit-product-select, .edit-product-textarea {
@@ -15,6 +16,7 @@
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    text-align: center;
 }
 
 .edit-product-button {
@@ -89,16 +91,15 @@
 
 
 .image-management {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    background: #f9f9f9;
+    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+
 }
 
 .image-limit-info, .file-extension-info {
@@ -117,12 +118,23 @@
 }
 
 .edit-form-each-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease-in-out;
+
+}
+.edit-form-each-image:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #b3b3b3;
 }
 
 .product-image img {

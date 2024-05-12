@@ -107,6 +107,23 @@ export default function EditProductForm() {
 
     return (
         <div>
+            <div className='image-management'>
+                <h2>Edit Product Images </h2>
+                <p className='image-limit-info'>Product images(maximum 5)</p>
+                <div className='edit-form-existing-images'>
+                    {singleProduct && singleProduct.images && singleProduct.images.map((image) => (
+                        <div key={image.id} className='edit-form-each-image'>
+                            <ProductImage key={image.id} image={image} edit={true} onDelete={handleImageUpdate} />
+                        </div>
+                    ))}
+                </div>
+                 {singleProduct?.images && singleProduct.images.length < 5 && (
+                     <div className='image-upload-section'>
+                        <p className='file-extension-info'>*Image must have approved file extension: webp, png, jpg, pdf, jpeg, gif</p>
+                        <ImageForm imageThunk={(image) => addProductImageThunk(productId, image)} onImageAdded={handleImageUpdate} />
+                    </div>
+                 )}
+            </div>
             <form className="edit-product-form" onSubmit={handleSubmit}>
             <h2>Edit product listing</h2>
                 <div>
@@ -157,42 +174,7 @@ export default function EditProductForm() {
                     <button type='submit' className="edit-product-button">Update Product</button>
                 </div>
             </form>
-            <div className='image-edit-list'>
 
-            </div>
-            {/* <p>Maximum of 5 product images</p>
-            <div className='edit-form-existing-images'>
-                {singleProduct && singleProduct.images && singleProduct.images.map((image) => (
-                    <div key={image.id} className='edit-form-each-image'>
-                         <ProductImage key={image.id} image={image} edit={true} onDelete={handleImageUpdate} />
-                    </div>
-                ))}
-            </div>
-            {singleProduct.images && singleProduct.images.length < 5 && (
-                    <div>
-                        <p>*Image must have approved file extension: webp, png, jpg, pdf, jpeg, gif</p>
-                        <ImageForm imageThunk={(image) => addProductImageThunk(productId, image)} onImageAdded={handleImageUpdate} />
-                    </div>
-                )} */}
-
-            <div className='image-management'>
-                <h2>Edit Product Images </h2>
-                <p className='image-limit-info'>Product images(maximum 5)</p>
-                <div className='edit-form-existing-images'>
-                    {singleProduct && singleProduct.images && singleProduct.images.map((image) => (
-                        <div key={image.id} className='edit-form-each-image'>
-                            <ProductImage key={image.id} image={image} edit={true} onDelete={handleImageUpdate} />
-                        </div>
-                    ))}
-                </div>
-                 {singleProduct.images && singleProduct.images.length < 5 && (
-                     <div className='image-upload-section'>
-                        <p className='file-extension-info'>*Image must have approved file extension: webp, png, jpg, pdf, jpeg, gif</p>
-                        <ImageForm imageThunk={(image) => addProductImageThunk(productId, image)} onImageAdded={handleImageUpdate} />
-                    </div>
-                 )}
-            </div>
-
-       </div>
+        </div>
     )
 }

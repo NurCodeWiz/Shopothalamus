@@ -6,6 +6,8 @@ const NEW_PRODUCT = "productsReducer/NEW_PRODUCT"
 const NEW_PRODUCT_IMAGE = 'productsReducer/NEW_PRODUCT_IMAGE'
 const UPDATE_PRODUCT = "productsReducer/UPDATE_PRODUCT"
 const DELETE_PRODUCT_IMAGE = 'productsReducer/DELETE_PRODUCT_IMAGE'
+const DELETE_PRODUCT = "productsReducer/DELETE_PRODUCT"
+const RESTART_CATEGORY = 'productsReducer/RESTART_CATEGORY'
 
 function allProducts(products) {
     return {
@@ -41,6 +43,13 @@ function updateProduct(product) {
     }
 }
 
+function deleteProduct(productId) {
+    return {
+        type: DELETE_PRODUCT,
+        productId
+    }
+}
+
 const deleteProductImage = (productId, imageId) => ({
     type: DELETE_PRODUCT_IMAGE,
     productId,
@@ -52,6 +61,13 @@ const newProductImage = (productId, image) => ({
     productId,
     image
 });
+
+
+function restartCategory() {
+    return {
+        type: RESTART_CATEGORY
+    }
+}
 
 
 export const getAllProducts = () => async(dispatch) => {
@@ -146,6 +162,21 @@ export const deleteProductImageThunk = (imageId) => async dispatch => {
     }
 }
 
+export const deleteExistingProduct = (productId) => async(dispatch) => {
+    const response = await fetch(`/api/products/${productId}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"}
+    })
+    if (response.ok) {
+        dispatch(deleteProduct(productId))
+        dispatch(restartCategory())
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+
+}
+
 const initialState = { products: null };
 
 export default function productsReducer(state = initialState, action) {
@@ -206,6 +237,16 @@ export default function productsReducer(state = initialState, action) {
                 }
             };
         }
+
+        case DELETE_PRODUCT: {
+            const newState = {...state}
+            delete newState.products[action.productId]
+            return newState;
+        }
+
+        case RESTART_CATEGORY:
+            return {...state, categoryResults: null}
+
         default:
             return state;
     }
