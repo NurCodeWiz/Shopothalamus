@@ -9,6 +9,7 @@ import SignupFormModal from "../SignupFormModal";
 import './Profile.css'
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 // import OpenModalButton from '../OpenModalButton';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -57,21 +58,23 @@ function ProfileButton() {
                   <li>{user.email}</li>
                   <hr className='pc-divider'/>
                   <div>
-                    <p>
+                    {/* <p>
                     <button className='pc-links pc-orders' onClick={() => alert('Feature coming soon')}>
                        Orders
                     </button>
-                    </p>
-                    <p>
-                    <button className='pc-links pc-new-listing' onClick={() => alert('Feature coming soon')}>
-                       Create New Product
-                    </button>
-                    </p>
-                    <p>
-                    <button className='pc-links pc-manage' onClick={() => alert('Feature coming soon')}>
-                       Manage Your Products
-                    </button>
-                    </p>
+                    </p> */}
+
+                    <li className="user-dropdowns">
+                     <NavLink to='/products/new' className='pc-links pc-new-listing'>
+                       Create Product
+                     </NavLink>
+                    </li>
+
+                    <li className="user-dropdowns">
+                      <NavLink to={`/products/users/${user.id}`} className="pc-links pc-manage" >
+                        Manage Your Products
+                     </NavLink>
+                    </li>
                   </div>
 
                   <li>

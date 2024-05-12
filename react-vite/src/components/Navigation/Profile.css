@@ -96,6 +96,12 @@
   transition: padding .15s, color .15s;
 }
 
+.pc-links:hover, .pc-manage:hover, .pc-new-listing:hover {
+  background-color: #0056b3;
+  transform: translateX(2px);
+  color: #fff;
+}
+
 .profile-button-links:hover {
   padding-left: 2px;
   color: white;

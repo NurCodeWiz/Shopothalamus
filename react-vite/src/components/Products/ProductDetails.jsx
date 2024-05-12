@@ -14,7 +14,7 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addItemToCartThunk, updateQuantityThunk } from "../../redux/cartItems";
 import { createCartThunk, allUserCartsThunk } from "../../redux/cart";
 import { allCartItemsThunk } from "../../redux/cartItems";
-
+import DeleteProduct from './DeleteProduct';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 
@@ -281,8 +281,15 @@ export default function ProductDetails() {
             <div className="pd-col-right">
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">
-                        <button onClick={() => alert('Feature coming soon')}>Update Listing</button>
-                        <button onClick={() => alert('Feature coming soon')}>Delete Listing</button>
+                         <button className="update">
+                             <NavLink to={`/products/${productId}/edit`} className= "button-style update-button">
+                               Update Product
+                             </NavLink>
+                         </button>
+                         <button  className='delete-product-button'>
+                            <OpenModalMenuItem itemText="Delete Product" modalComponent={<DeleteProduct productId={singleProduct.id} />} />
+                        </button>
+
                     </div>
                 }
                 {user && (
