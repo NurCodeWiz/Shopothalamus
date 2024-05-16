@@ -1,0 +1,130 @@
+#checkout {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+#checkout h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+
+.checkout-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.checkout-products .product-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.checkout-products .product-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+
+.checkout-products .product-item .product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.checkout-products .product-item .product-details .product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+
+.checkout-products .product-item .product-details .product-quantity {
+    font-size: 16px;
+    color: #666;
+}
+
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.checkout-button:hover {
+    background-color: #0056b3;
+}
+
+
+.loading-text {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+.checkout-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.image-slices {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.slice {
+    width: 100%;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    #checkout {
+        padding: 10px;
+    }
+
+    .checkout-products .product-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkout-products .product-item img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .checkout-button {
+        font-size: 16px;
+    }
+}
