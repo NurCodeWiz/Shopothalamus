@@ -26,6 +26,36 @@ def before_request():
     if not current_user:
         return jsonify({'error': 'Unauthorized'}), 403
 
+@cart_routes.route('/',methods=['DELETE'])
+@login_required
+def empty_cart():
+    carts = Cart.query.filter_by(user_id = current_user.id).all()
+    cart_products = CartItem.query.filter_by(cart_id=carts[0].id).all()
+    for product in cart_products:
+        db.session.delete(product)
+    db.session.commit()
+    return {"message": "cart successfully emptied"}
+
+# @cart_routes.route('/', methods=['DELETE'])
+# @login_required
+# def empty_cart():
+#     try:
+#         carts = Cart.query.filter_by(user_id=current_user.id).all()
+
+#         if not carts:
+#             return {"message": "No items in cart to delete"}, 200
+
+#         for cart in carts:
+#             for item in cart.cart_items:
+#                 db.session.delete(item)
+#             db.session.delete(cart)
+
+#         db.session.commit()
+#         return {"message": "Cart successfully emptied"}, 200
+#     except Exception as e:
+#         db.session.rollback()
+#         return {"error": str(e)}, 500
+
 # Routes
 @cart_routes.route('/all')
 def all_carts():
