@@ -336,6 +336,15 @@
   background-color: #45a049;
 }
 
+.image_productDetails2 {
+  max-width: 20%;
+  height: auto;
+  border-radius: 8px;
+  position: absolute;
+  top: 15%;
+  right: 50px;
+
+}
 
 
 @media (max-width: 768px) {

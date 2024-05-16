@@ -71,6 +71,19 @@ export const createCartThunk = () => async (dispatch) => {
     dispatch(createCart(data))
     return data
 }
+
+export const emptyCartThunk = () => async (dispatch) => {
+    const response = await fetch('/api/carts/', {
+      method: 'DELETE'
+    });
+
+    if(response.ok) {
+      dispatch(removeCart());
+    } else {
+      return { server: "Something went wrong. Please try again" }
+    }
+  }
+
 const initialState = {
     Carts: [],
     // other properties if there are any

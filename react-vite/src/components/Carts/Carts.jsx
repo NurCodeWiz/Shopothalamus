@@ -8,6 +8,7 @@ import { deleteCartItemThunk, updateQuantityThunk, allCartItemsThunk } from "../
 import './Carts.css';
 import { getSingleProduct } from '../../redux/products';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 function Carts() {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
@@ -20,7 +21,7 @@ function Carts() {
     const [quantitySelected, setQuantitySelected] = useState();
     const [refreshQuantity, setRefreshQuantity] = useState(false);
     const [removeItem, setRemoveItem] = useState(false);
-    const [initiateCheckout, setInitiateCheckout] = useState(false);
+    const [initiateCheckout] = useState(false);
     const [showModalMessage, setShowModalMessage] = useState(false);
     const { closeModal } = useModal();
     const singleProduct = useSelector(state => state.products);
@@ -104,17 +105,17 @@ function Carts() {
     let totalAmount = 0;
     let totalItems = 0;
 
-    const proceedToCheckout = async () => {
-        for (let item of cartItemsList) {
-            await dispatch(deleteCartItemThunk(item?.id));
-            console.log("after dispatching delete cart item", initiateCheckout)
-            setInitiateCheckout(true);
-        }
-        setRemoveItem(!removeItem);
-        setTimeout(() => {
-            closeModal();
-        }, 3000);
-    };
+    // const proceedToCheckout = async () => {
+    //     for (let item of cartItemsList) {
+    //         await dispatch(deleteCartItemThunk(item?.id));
+    //         console.log("after dispatching delete cart item", initiateCheckout)
+    //         setInitiateCheckout(true);
+    //     }
+    //     setRemoveItem(!removeItem);
+    //     setTimeout(() => {
+    //         closeModal();
+    //     }, 3000);
+    // };
 
     if (!allProducts || !allProducts.products)
     {
@@ -153,6 +154,11 @@ function Carts() {
     return (
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>
+            <img
+                src="https://nurawsbucket.s3.amazonaws.com/giphy+(1).gif"
+                alt="Decorative"
+                className="image_productDetails"
+                />
             {initiateCheckout && <p>Thank you for your purchase!</p>}
             {showModalMessage && initiateCheckout && <p>Closing shortly... </p>}
             <hr className="cart-divider"></hr>
@@ -199,7 +205,12 @@ function Carts() {
                 <h3 className='subtotal-text'>Subtotal ({totalItems} item): ${totalAmount.toFixed(2)}</h3> :
                 <h3 className='subtotal-text'>Subtotal ({totalItems} items): ${totalAmount.toFixed(2)}</h3>
             }
-            {cartItemsList?.length > 0 && <button onClick={proceedToCheckout} className='checkout-button'>Proceed to Checkout</button>}
+            {cartItemsList?.length > 0 ?(
+                <Link to="/checkout" onClick={closeModal}>Checkout</Link>
+            ) : (
+                <p>No Items Yet...</p>
+            )}
+
         </div>
     );
 }
