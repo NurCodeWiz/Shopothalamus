@@ -96,7 +96,16 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.image_productDetails {
+    max-width: 15%;
+    align-self: center;
+    display: flex;
+    margin: 20px auto;
+    height: auto;
+    border-radius: 8px;
 
+
+  }
 
 @media (max-width: 768px) {
     .cart-item-details {

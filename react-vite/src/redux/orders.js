@@ -15,7 +15,7 @@ export const getUserOrdersThunk = () => async dispatch => {
     const response = await fetch('/api/orders/');
     if (response.ok) {
         const data = await response.json();
-        // Assuming the data is already normalized and in the correct format
+
         dispatch(addOrders(data));
     } else {
         return { server: "Something went wrong. Please try again" };

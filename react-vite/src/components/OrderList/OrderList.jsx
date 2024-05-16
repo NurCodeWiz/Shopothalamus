@@ -32,13 +32,6 @@ function OrderList() {
     return (
         <div id="order-list">
             <h3>Your Orders</h3>
-            {/* { Object.values(orders)?.length ?
-                // orders.map(id => (
-                //     <Order key={id} order={orders[id]} />
-                // )) :
-                <h2> {Object.values(orders)?.length} </h2>:
-                <p>No past orders to display</p>
-            } */}
             <img
                 src="https://nurawsbucket.s3.amazonaws.com/original.webp"
                 alt="Decorative"

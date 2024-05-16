@@ -279,6 +279,11 @@ export default function ProductDetails() {
                 </div>
             </div>
             <div className="pd-col-right">
+            <img
+                src="https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif"
+                alt="Decorative"
+                className="image_productDetails2"
+                />
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">
                          <button className="update">
@@ -368,7 +373,9 @@ export default function ProductDetails() {
                 <h4 className="in-stock">In Stock</h4>
                 </div>
                 </div>
+
               </div>
+
 
             </div>
     );
