@@ -154,6 +154,11 @@ function Carts() {
     return (
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>
+            <img
+                src="https://nurawsbucket.s3.amazonaws.com/giphy+(1).gif"
+                alt="Decorative"
+                className="image_productDetails"
+                />
             {initiateCheckout && <p>Thank you for your purchase!</p>}
             {showModalMessage && initiateCheckout && <p>Closing shortly... </p>}
             <hr className="cart-divider"></hr>
@@ -205,6 +210,7 @@ function Carts() {
             ) : (
                 <p>No Items Yet...</p>
             )}
+
         </div>
     );
 }
