@@ -57,27 +57,27 @@ function Checkout() {
             <h3>Your Cart</h3>
             <div className="image-slices">
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/brain-408_256.gif"
+                src="https://nurawsbucket.s3.amazonaws.com/kawaii-pokemon.gif"
                 alt="Decorative"
                 className="slice slice1"
             />
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/brain-408_256.gif"
+                src="https://nurawsbucket.s3.amazonaws.com/kawaii-pokemon.gif"
                 alt="Decorative"
                 className="slice slice2"
             />
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/brain-408_256.gif"
+                src="https://nurawsbucket.s3.amazonaws.com/kawaii-pokemon.gif"
                 alt="Decorative"
                 className="slice slice3"
             />
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/brain-408_256.gif"
+                src="https://nurawsbucket.s3.amazonaws.com/kawaii-pokemon.gif"
                 alt="Decorative"
                 className="slice slice4"
             />
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/brain-408_256.gif"
+                src="https://nurawsbucket.s3.amazonaws.com/kawaii-pokemon.gif"
                 alt="Decorative"
                 className="slice slice"
             />
@@ -87,7 +87,7 @@ function Checkout() {
                     <OrderItem key={item.id} quantity={item.quantity} product={products[item.product_id]} />
                 ))}
             </div>
-            <button onClick={placeOrder} className='checkout-button'>Place Order</button>
+            <button onClick={placeOrder} className='placeOrder-button'>Place Order</button>
         </div>
     );
 }
