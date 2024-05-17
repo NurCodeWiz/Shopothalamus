@@ -12,7 +12,8 @@ function OrderItem({product, quantity}) {
 
     return (
         <div className="order-item" onClick={() => navigate(`/products/${product.id}`)}>
-            <p>{product.name} -- Qty: {quantity}</p>
+            <p className="product-name">Product Name: {product.name} </p>
+            <p className="product-quantity">Qty: {quantity} </p>
             {/* <img className="order-item-image" src={image.url} alt={product.name} /> */}
         </div>
     )
