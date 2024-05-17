@@ -1,0 +1,56 @@
+.delete-review {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.confirm-delete-message {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.button.confirm {
+    background-color: #d9534f;
+}
+
+.button.confirm:hover {
+    background-color: #c9302c;
+}
+
+.delete-button {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.delete-button.cancel {
+    background-color: #5bc0de;
+}
+
+.delete-button.cancel:hover {
+    background-color: #31b0d5;
+}

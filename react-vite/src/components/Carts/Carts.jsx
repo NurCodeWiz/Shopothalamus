@@ -206,7 +206,7 @@ function Carts() {
                 <h3 className='subtotal-text'>Subtotal ({totalItems} items): ${totalAmount.toFixed(2)}</h3>
             }
             {cartItemsList?.length > 0 ?(
-                <Link to="/checkout" onClick={closeModal}>Checkout</Link>
+                <Link to="/checkout" onClick={closeModal} className="checkout-button">Checkout</Link>
             ) : (
                 <p>No Items Yet...</p>
             )}
