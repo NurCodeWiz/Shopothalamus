@@ -18,7 +18,7 @@ function Carts() {
     console.log('Carts:',userCarts)
     // const allProducts = useSelector(state => state.products.Products);
     const allProducts = useSelector(state => state.products)
-    const [quantitySelected, setQuantitySelected] = useState();
+    const [quantitySelected] = useState();
     const [refreshQuantity, setRefreshQuantity] = useState(false);
     const [removeItem, setRemoveItem] = useState(false);
     const [initiateCheckout] = useState(false);
@@ -87,11 +87,11 @@ function Carts() {
 
     const cartItemsList = cartItems
 
-    const updateCartItem = async (e, cartItemId, productId) => {
-        e.preventDefault();
+    const updateCartItem = async (quantity, cartItemId, productId) => {
+
         const updateData = {
             product_id: productId,
-            quantity: parseInt(quantitySelected)
+            quantity: parseInt(quantity)
         };
         await dispatch(updateQuantityThunk(updateData, cartItemId));
         setRefreshQuantity(!refreshQuantity);
@@ -186,7 +186,7 @@ function Carts() {
                         </NavLink>
                         <div className='item-quantity-update'>
                             Quantity: {item?.quantity}
-                            <form onSubmit={(e) => updateCartItem(e, item?.id, item?.product_id)} className='quantity-update-form'>
+                            {/* <form onSubmit={(e) => updateCartItem(e, item?.id, item?.product_id)} className='quantity-update-form'>
                                 <select onChange={(e) => setQuantitySelected(e.target.value)} className='quantity-select'>
                                     <option value='' disabled selected hidden>Qty:{item?.quantity}</option>
                                     {Array.from({ length: 10 }, (_, i) => i + 1).map(number => (
@@ -194,7 +194,16 @@ function Carts() {
                                     ))}
                                 </select>
                                 <button type='submit' className='cart-button update-button'>Update</button>
-                            </form>
+                            </form> */}
+                            <select
+                                onChange={(e) => updateCartItem(e.target.value, item?.id, item?.product_id)}
+                                className='quantity-select'
+                                value={item?.quantity}
+                            >
+                            {Array.from({ length: 10 }, (_, i) => i + 1).map(number => (
+                            <option key={number} value={number}>Qty: {number}</option>
+                            ))}
+                            </select>
                             <button onClick={() => removeCartItem(item?.id)} className='cart-button delete-button'>Delete</button>
                         </div>
                     </div>
