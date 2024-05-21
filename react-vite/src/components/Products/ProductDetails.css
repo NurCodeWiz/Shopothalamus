@@ -17,6 +17,9 @@
     gap: 1rem;
 
 }
+.pd-col-right {
+  background-color:rgb(208, 216, 204);
+}
 
 .free-ship {
     font-size: 13px;
@@ -77,7 +80,7 @@
   cursor: pointer;
   border: 1px solid #eaeaea;
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 12px;
   gap: 10px;
 }
 
@@ -86,6 +89,7 @@
     max-height: 500px;
     height: auto;
     object-fit: cover;
+    border-radius: 12px;
 
 }
 
@@ -100,7 +104,7 @@
     margin-top: 1rem;
 }
 
-.pd-vendor-btns button,
+/* .pd-vendor-btns button,
 .pd-user-btns button,
 .pd-contact-seller button {
     padding: 0.5rem 1rem;
@@ -111,17 +115,17 @@
     color: white;
     font-size: 1rem;
     transition: background-color 0.3s;
-}
+} */
 
-.pd-vendor-btns button:hover,
+/* .pd-vendor-btns button:hover,
 .pd-user-btns button:hover,
 .pd-contact-seller button:hover {
     background-color: #0056b3;
-}
+} */
 
-.pd-contact-seller {
+/* .pd-contact-seller {
     margin-top: 1rem;
-}
+} */
 .sec-pricing {
     display: flex;
     flex-direction: column;
@@ -171,8 +175,8 @@
     margin-top: 10px;
   }
   .review {
-    background: #f7f7f7;
-    border: 1px solid #ebebeb;
+    background: rgb(208, 216, 204);
+    border: none;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -265,13 +269,13 @@
 .rating-description {
     margin: 20px 0;
     padding: 10px;
-    background-color: #f8f8f8;
+    background-color: rgb(208, 216, 204);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .msg-to-add-cart {
-  background-color: #f0f4f8;
+  background-color: rgb(208, 216, 204);
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -365,9 +369,9 @@
 
 .pd-col-right {
     padding: 1rem;
-    background-color: #f8f8f8;
+    background-color: rgb(208, 216, 204);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
 }
 
 h2 {
