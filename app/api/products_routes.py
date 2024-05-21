@@ -112,17 +112,15 @@ def create_new_image(id):
     if form.validate_on_submit():
         # Get the image file from the form
         image = form.data["image"]
-        # Generate unique filename for image
-        # Rename the file to unique string
         image.filename = unique_filename(image.filename)
         # Send to S3 bucket
         upload = s3_upload_file(image)
-        # Print (error check)
+
         print(upload)
 
-        # If the file upload fails
+
         if "url" not in upload:
-            # Return {"errors": <aws_errors>}
+
             return upload
 
         # File upload success - grab the aws url
@@ -142,17 +140,17 @@ def create_new_image(id):
             product_id=int(id),
             preview=preview
         )
-        # Persist in db
+
         db.session.add(new_image)
         db.session.commit()
 
         # Grab latest version of object from db (just in case)
         db.session.refresh(new_image)
 
-        # Return image to client
+
         return new_image.to_dict(), 201
 
-    # If the form doesn't validate successfully, send errors
+
     return { "errors": form.errors }, 400
 
 @products_routes.route('/<int:id>', methods=["DELETE"])
@@ -162,7 +160,7 @@ def delete_product(id):
     if product_to_delete:
         deleted = product_to_delete.to_dict()
 
-        # Product delete
+
         db.session.delete(product_to_delete)
         db.session.commit()
 

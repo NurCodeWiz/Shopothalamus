@@ -14,7 +14,7 @@ from .api.review_routes import reviews_routes
 from .api.product_image_routes import product_images
 from .api.cart_routes import cart_routes
 from .api.orders_routes import orders
-from .api.background_task import start_background_task
+
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 

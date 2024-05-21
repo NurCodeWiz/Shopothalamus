@@ -364,7 +364,7 @@ export default function ProductDetails() {
                 </div>
                 <div className="ship-detail"> & FREE Returns</div>
                 <div className="ship-detail">
-                  FREE Prime delivery
+                  FREE  ShopoThalamus delivery&nbsp;
                   <span className="date-info">
                  {date}.<span> Order by</span>
                 <span> 5 p.m of today</span>

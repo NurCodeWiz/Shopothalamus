@@ -64,28 +64,39 @@ h1 {
 }
 
 .delete-order-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 20px;
+    border: 2px solid #ff0000;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    width: 300px;
     text-align: center;
 }
 
 .confirm-delete-text {
     margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
 }
 
 .delete-button.confirm {
-    background-color: #e74c3c;
+    background-color: #ff0000;
     color: white;
 }
 
 .delete-button.confirm:hover {
-    background-color: #c0392b;
+    background-color: #cc0000;
 }
 
 .delete-button.cancel {
-    background-color: #bdc3c7;
-    color: white;
+    background-color: #cccccc;
+    color: #333;
 }
 
 .delete-button.cancel:hover {
-    background-color: #95a5a6;
+    background-color: #aaaaaa;
 }
