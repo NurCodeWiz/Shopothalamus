@@ -75,8 +75,8 @@ export default function CreateProductForm() {
 
     return (
         <div>
-            <h2>Create a new product listing</h2>
             <form className="prod-form" onSubmit={handleSubmission} encType='multipart/form-data'>
+            <h2>Create a new product listing</h2>
                 <div>
                     <p>Provide your product with a descriptive name.</p>
                     <input

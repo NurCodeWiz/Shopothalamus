@@ -12,6 +12,8 @@
 .prod-form h2 {
     color: #333;
     text-align: center;
+    margin: 0 auto 20px auto;
+    width: fit-content;
 }
 
 .prod-form img {
