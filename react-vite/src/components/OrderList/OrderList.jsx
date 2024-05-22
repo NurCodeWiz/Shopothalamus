@@ -60,7 +60,7 @@ const OrderPage = () => {
         );
     };
 
-    console.log('ORDERS', Object.values(orders));
+    // console.log('ORDERS', Object.values(orders));
 
     return (
         <div className="order-page">

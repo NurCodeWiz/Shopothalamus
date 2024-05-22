@@ -27,7 +27,6 @@
     color: #666;
 }
 
-/* Styles for the form and its elements */
 .signup-form {
     display: flex;
     flex-direction: column;
@@ -63,7 +62,6 @@
     background-color: #0056b3;
 }
 
-/* Error message styling */
 .signup-error-message {
     color: #b30000;
     font-size: 12px;

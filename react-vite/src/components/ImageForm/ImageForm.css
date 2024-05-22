@@ -1,5 +1,5 @@
 .add-image {
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -14,10 +14,10 @@
 }
 
 .add-image:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049;
 }
 
 .add-image:disabled {
-    background-color: #ccc; /* Gray out when disabled */
+    background-color: #ccc;
     cursor: not-allowed;
 }

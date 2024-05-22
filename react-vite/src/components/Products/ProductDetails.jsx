@@ -27,7 +27,7 @@ export default function ProductDetails() {
     // const  users  = useSelector(state => state.users)
     const cartItems = useSelector(state => state.cartItems.CartItems);
 
-    console.log('===>', (useSelector(state => state.reviews)))
+    // console.log('===>', (useSelector(state => state.reviews)))
     // const reviewId = Object.keys(reviews);
     // console.log('@reviewIds',reviewIds)
 
@@ -59,7 +59,7 @@ export default function ProductDetails() {
         }
 
         if (user && !Object.values(allCarts)?.length) {
-            console.log('allUserCartsThunk', allCarts)
+            // console.log('allUserCartsThunk', allCarts)
             dispatch(allUserCartsThunk())
         }
         if (user && activeCartId) {
@@ -67,7 +67,7 @@ export default function ProductDetails() {
         }
 
     }, [dispatch, productId, products, reviews, allCarts, user, activeCartId]);
-    console.log(Object.keys(reviews).length)
+    // console.log(Object.keys(reviews).length)
 
     useEffect(() => {
         dispatch(getSingleProduct(productId)) // Refresh handling on review change
@@ -90,12 +90,12 @@ export default function ProductDetails() {
     // const renderDelete = () => {
     //     setDelRev(!delRev)
     // }
-    console.log(reviews)
-    console.log('allcarts-new:', allCarts)
+    // console.log(reviews)
+    // console.log('allcarts-new:', allCarts)
     let activeCartObj
     if(user && Object.values(allCarts.Carts)?.length){
         for(let cart of allCarts.Carts){
-            console.log('cart->>>>>>>:', cart)
+            // console.log('cart->>>>>>>:', cart)
             if(cart?.isOrdered == false){
                 activeCartObj = cart
             }
@@ -104,17 +104,17 @@ export default function ProductDetails() {
             }
         }
     }
-    console.log('activeCartObj-new:', activeCartObj)
+    // console.log('activeCartObj-new:', activeCartObj)
 
 
     if (user && activeCartId && !cartItems) {
         return <div>Loading cart items...</div>;
     }
 
-    console.log('cartItems', cartItems)
+    // console.log('cartItems', cartItems)
     let findInCart = cartItems?.find(item => item?.product_id == productId)
-    console.log('activeCartObj->:', activeCartObj)
-    console.log('findInCart->:', findInCart)
+    // console.log('activeCartObj->:', activeCartObj)
+    // console.log('findInCart->:', findInCart)
 
     const addToCart = async (productId) => {
         let addItem = {
@@ -131,7 +131,7 @@ export default function ProductDetails() {
             await dispatch(updateQuantityThunk(updateQty, findInCart.id));
         } else if (activeCartObj) {
             // add the product to active cart
-            console.log('activeCartObj........', activeCartObj.id)
+            // console.log('activeCartObj........', activeCartObj.id)
             addItem.cart_id = activeCartObj.id;
             await dispatch(addItemToCartThunk(addItem, addItem.cart_id));
         } else {
@@ -146,11 +146,11 @@ export default function ProductDetails() {
     };
 
     const singleProduct = products[productId];
-    console.log('singleProduct ====>',singleProduct)
+    // console.log('singleProduct ====>',singleProduct)
 
     const allProductImages = singleProduct.images || [];
     const allProductReviews = singleProduct.reviews || [];
-    console.log('#####',allProductReviews)
+    // console.log('#####',allProductReviews)
 
 
     function formatDateV2(date) {
@@ -206,7 +206,7 @@ export default function ProductDetails() {
         avg_star = avg_star + r.rating
     }
     avg_star = avg_star / allProductReviews.length
-    console.log('avg_star', avg_star)
+    // console.log('avg_star', avg_star)
 
     return (
         <div className="pd-col-wrap page-content">
@@ -337,26 +337,11 @@ export default function ProductDetails() {
                     )}
 
                 <p>{singleProduct.name}</p>
-                {/* <span>{users_array[singleProduct.provider_id - 1].first_name} </span>
-                <span>{users_array[singleProduct.provider_id - 1].last_name}</span> */}
                 <div className="rating-description">
-                {/* {
-                allProductReviews.map(review => (
-                <div key={review?.id} className="review">
-                 <p className='rating-icons'>{starsIcon(avg_star)}</p>
-                </div>
-                ))} */}
                 {allProductReviews.length ? (<p className='rating-icons'>{starsIcon(avg_star)}  {avg_star.toFixed(1)}</p>) : null}
                 {!allProductReviews.length && (<p> No reviews </p>)}
-
                 </div>
-                    {/* {singleProduct.provider_id !== user?.id &&
-                    <div className="">
-                        <button onClick={() => addToCart(singleProduct)}>Add to cart</button>
-                    </div>
-                } */}
                 <p>{singleProduct.description}</p>
-                <div className="pd-contact-seller">
                 <div className="sec-pricing">
                   <div className="price-wrap">
                    <span className="symbol-currency">$</span>
@@ -372,11 +357,7 @@ export default function ProductDetails() {
                 </div>
                 <h4 className="in-stock">In Stock</h4>
                 </div>
-                </div>
-
-              </div>
-
-
             </div>
+        </div>
     );
 }

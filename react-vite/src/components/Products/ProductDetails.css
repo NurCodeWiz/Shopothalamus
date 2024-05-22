@@ -103,44 +103,25 @@
     gap: 0.5rem;
     margin-top: 1rem;
 }
-
-/* .pd-vendor-btns button,
-.pd-user-btns button,
-.pd-contact-seller button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-} */
-
-/* .pd-vendor-btns button:hover,
-.pd-user-btns button:hover,
-.pd-contact-seller button:hover {
-    background-color: #0056b3;
-} */
-
-/* .pd-contact-seller {
-    margin-top: 1rem;
-} */
+.pd-contact-seller {
+  height: 100px;
+}
 .sec-pricing {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-right: 20px;
-    padding: 10px;
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 200px;
-    position: absolute;
-    right: 0;
-    /* top: 600px; */
-    right:50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 20px;
+  padding: 5px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  position: absolute;
+  right: 0;
+  right: 50px;
+  height: 170px;
+
   }
 
   .price-wrap {
@@ -149,30 +130,30 @@
   }
 
   .symbol-currency {
-    font-size: 1.5rem;
+    font-size: 0.7rem;
     margin-right: 5px;
   }
 
   .value-price {
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 700;
   }
 
   .ship-detail {
     font-size: 0.85rem;
     color:green;
-    margin-top: 5px;
+    margin-top: 2px;
   }
 
   .date-info {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     margin-top: 5px;
   }
 
   .in-stock {
     color: #080;
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 2px;
   }
   .review {
     background: rgb(208, 216, 204);
