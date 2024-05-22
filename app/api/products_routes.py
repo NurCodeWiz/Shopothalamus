@@ -9,9 +9,16 @@ products_routes = Blueprint("products_routes", __name__)
 
 @products_routes.route('/')
 def get_all_products():
+    search_name = request.args.get('name')
+    print("SEARCH FOR:", search_name)
+
+    query = Product.query
+
+    if search_name:
+        query = query.filter(Product.name.ilike(f'%{search_name}%'))
 
     # print("=================")
-    all_products = Product.query.all()
+    all_products = query.all()
     products_with_images = {}
     for product in all_products:
         images = product.images

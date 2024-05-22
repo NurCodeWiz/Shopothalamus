@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import "./HomePage.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function FeaturedPage() {
+    const navigate = useNavigate();
+
     const smallerImageUrls = [
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+9.01.44+AM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+9.00.53+AM.png",
@@ -45,6 +48,9 @@ export default function FeaturedPage() {
             </div>
             <div className="banner-image-container">
                 <img src={bannerImageUrl} alt="Banner" className="banner-image" />
+                <div className="all-products-button-container">
+                  <button onClick={() => navigate('/products')} className="all-products-button">View all products</button>
+                </div>
             </div>
             <div className="smaller-image-card right-image-top" style={{ top: '25%' }}>
                 <img src={smallerImageUrls[imageIndexes[2]]} alt="Right Top Image" className="smaller-image" />
