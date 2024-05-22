@@ -13,7 +13,7 @@ def get_user_orders():
         'allIds': []
     }
 
-    print('xxxxxxxxx', orders)
+    # print('xxxxxxxxx', orders)
 
     for order in orders:
         order_dict = order.to_dict()

@@ -26,7 +26,6 @@
     color: #666;
   }
 
-  /* Styles for the form and its elements */
   .login-form {
     display: flex;
     flex-direction: column;

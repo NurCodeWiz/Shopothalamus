@@ -47,67 +47,6 @@ function ProfileButton() {
   };
   const ulClassName = `profile-dropdown${showMenu ? " show" : " hide"}`;
 
-//   return (
-//     <div className="pc-container">
-//         <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' />
-//         {showMenu && (
-//             <ul className={ulClassName} ref={ulRef}>
-//                 {user ? (
-//                   <>
-//                   <li>Hello, {user.firstName} {user.lastName}</li>
-//                   <li>{user.email}</li>
-//                   <hr className='pc-divider'/>
-
-//                     {/* <p>
-//                     <button className='pc-links pc-orders' onClick={() => alert('Feature coming soon')}>
-//                        Orders
-//                     </button>
-//                     </p> */}
-
-//                     <li className="user-dropdowns">
-//                      <NavLink to='/products/new' className='pc-links pc-new-listing'>
-//                        Create Product
-//                      </NavLink>
-//                     </li>
-
-//                     <li className="user-dropdowns">
-//                       <NavLink to={`/products/users/${user.id}`} className="pc-links pc-manage" >
-//                         Manage Your Products
-//                      </NavLink>
-//                     </li>
-//                     <li className="user-dropdowns">
-//                       <NavLink to='/orders' className="pc-links pc-orders">
-//                         Orders
-//                       </NavLink>
-//                     </li>
-
-
-//                   <li>
-//                   <li>
-//                   <button onClick={logout} className='pc-links pc-orders' id='pc-logout-btn'>
-//                     Log Out
-//                   </button>
-//                   </li>
-//                   </li>
-//                 </>
-
-//                 ) : (
-//                   <>
-//                     <li>
-//                      <OpenModalButton buttonText="Log In" onItemClick={closeMenu} modalComponent={<LoginFormModal />} />
-//                     </li>
-//                     <li>
-//                       <OpenModalButton buttonText="Sign Up" onItemClick={closeMenu}  modalComponent={<SignupFormModal />} />
-//                    </li>
-//                  </>
-
-
-//                 )}
-//             </ul>
-//         )}
-//     </div>
-// );
-
 return (
   <div className="pc-container">
     <FaUserCircle size={50} onClick={toggleMenu} className='pc-btn' />

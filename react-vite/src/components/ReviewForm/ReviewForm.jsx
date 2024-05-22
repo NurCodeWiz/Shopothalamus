@@ -5,18 +5,6 @@ import { MdOutlineStar, MdOutlineStarBorder } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'
 import './ReviewForm.css';
 
-// function formDataFromObject(obj) {
-//     const formData = new FormData();
-//     Object.entries(obj).forEach(([key, value]) => {
-//         if (value instanceof File) {
-//             formData.append(key, value, value.name);
-//         } else {
-//             formData.append(key, value);
-//         }
-//     });
-//     return formData;
-// }
-
 function ReviewForm({productId, review, buttonText, hideForm}) {
     const dispatch = useDispatch();
     const nav = useNavigate()
@@ -72,45 +60,15 @@ function ReviewForm({productId, review, buttonText, hideForm}) {
         return newErrors;
     };
 
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         const formErrors = validate();
-//         setErrors(formErrors);
-
-//         if (Object.keys(formErrors).length === 0) {
-//             setIsSubmitting(true);
-//             try {
-//                 const payload = {
-//                     rating,
-//                     review_content,
-//                     image: image_url
-//                 };
-
-
-//                 const formData = formDataFromObject(payload);
-//                 console.log("Form Data:", Array.from(formData.entries()));
-//             await dispatch(createReviewThunk(productId, formData));
-//             hideForm();
-//         } catch (error) {
-//                 console.error('Failed to create review:', error);
-//                 setErrors(prevErrors => ({ ...prevErrors, submit: 'Failed to submit review. Please try again.' }));
-//         } finally {
-//                 setIsSubmitting(false);
-//         }
-//     } else {
-
-//             setErrors(formErrors);
-//     }
-// };
 const handleSubmit = async (event) => {
     event.preventDefault();
     const formErrors = validate();
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
-        console.log('rating', rating)
-        console.log('review_content', review_content)
-        console.log('image_url', image_url)
+        // console.log('rating', rating)
+        // console.log('review_content', review_content)
+        // console.log('image_url', image_url)
 
         setIsSubmitting(true);
         const payload = {

@@ -101,7 +101,7 @@ export const getProductsByCategory = (category) => async(dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(productsByCategory(data))
-        console.log("data:",data)
+        // console.log("data:",data)
     } else {
         const errors = await response.json();
         return errors;
@@ -113,7 +113,7 @@ export const getSingleProduct = (productId) => async(dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(singleProduct(data))
-        console.log("singleproductdata:",data)
+        // console.log("singleproductdata:",data)
     } else {
         const errors = await response.json();
         return errors;
@@ -172,7 +172,7 @@ export const deleteProductImageThunk = (imageId) => async dispatch => {
 
     if(response.ok) {
         const data = await response.json();
-        console.log('deleteProductImageThunk', data)
+        // console.log('deleteProductImageThunk', data)
         dispatch(deleteProductImage(data.productId, data.id));
     }
 }

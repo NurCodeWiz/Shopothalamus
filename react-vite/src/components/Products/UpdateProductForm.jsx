@@ -45,7 +45,7 @@ export default function EditProductForm() {
         singleProduct = products[productId];
 
     }
-    console.log("singleProduct2", singleProduct)
+    // console.log("singleProduct2", singleProduct)
     useEffect(() => {
         dispatch(getSingleProduct(productId));
     }, [dispatch, productId]);
@@ -98,7 +98,7 @@ export default function EditProductForm() {
             }
         }
     }
-    console.log("singleProduct", singleProduct)
+    // console.log("singleProduct", singleProduct)
     const handleImageUpdate = () => {
         dispatch(getSingleProduct(productId));
         // dispatch(addProductImageThunk(productId))

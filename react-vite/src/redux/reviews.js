@@ -68,7 +68,7 @@ export const reviewsByProduct = (productId) => async (dispatch) => {
     }
     const data = await response.json()
     dispatch(getAllReviewsProduct(data))
-    console.log("reviews:",data)
+    // console.log("reviews:",data)
 }
 
 export const getUserReviewsThunk = () => async (dispatch) => {
@@ -158,7 +158,7 @@ function reviewReducer(state = initialState, action){
             return {...state, reviews: action.reviews}
         }
         case CREATE_NEW_REVIEW: {
-            console.log('+++++++++', state)
+            // console.log('+++++++++', state)
             // return{...state, ...action.newReview}
             // const newReviewId = action.newReview.id;
             // return {

@@ -25,19 +25,9 @@ export default function OwnedProducts() {
     {
         return;
     }
-    console.log("products", products.products)
-    console.log("user", user)
+    // console.log("products", products.products)
+    // console.log("user", user)
 
-
-
-    // function reviewsByProduct(productID) {
-    //     if (reviews) {
-    //         const reviewsArr = Object.values(reviews);
-    //         return reviewsArr.filter(review => review.productId === productID);
-    //     } else {
-    //         return null;
-    //     }
-    // }
 
     function ownedProducts(products) {
         const ownedArr = Object.values(products).filter(product => product.provider_id === user.id);
@@ -49,7 +39,7 @@ export default function OwnedProducts() {
     }
 
     const filteredProducts = ownedProducts(products.products);
-    console.log('filteredProducts', filteredProducts)
+    // console.log('filteredProducts', filteredProducts)
 
     return (
         <div className="products-page">

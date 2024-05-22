@@ -15,7 +15,7 @@ function Carts() {
     const userCarts = useSelector(state => state.carts.Carts);
     const cartItems = useSelector(state => state.cartItems.CartItems);
     const { productId } = useParams();
-    console.log('Carts:',userCarts)
+    // console.log('Carts:',userCarts)
     // const allProducts = useSelector(state => state.products.Products);
     const allProducts = useSelector(state => state.products)
     const [quantitySelected] = useState();
@@ -49,18 +49,18 @@ function Carts() {
         return <div>Loading the cart...</div>;
     }
 
-    console.log('activeCartId', activeCartId)
+    // console.log('activeCartId', activeCartId)
 
     if(Object.values(userCarts.Carts)?.length){
         for(let cart of userCarts.Carts){
-            console.log('cart', cart)
+            // console.log('cart', cart)
             if(cart?.isOrdered == false && cart?.user_id == currentUser?.id){
                 currentActiveCart = cart
             }
         }
     }
 
-    console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
+    // console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
     if (currentActiveCart?.id) {
         activeCartId = currentActiveCart.id
     }
@@ -69,9 +69,9 @@ function Carts() {
         return <div>Loading cart items...</div>;
     }
 
-    console.log('cartItems', cartItems)
+    // console.log('cartItems', cartItems)
 
-    console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
+    // console.log('cart->>xxxxx>>>>>:', currentActiveCart?.id)
 
     // if (!cartItems?.length) {
     //     return (
@@ -121,7 +121,7 @@ function Carts() {
     {
         return <div>Loading the products...</div>;
     }
-    console.log('allProducts---->', Object.values(allProducts.products));
+    // console.log('allProducts---->', Object.values(allProducts.products));
     let allProducts_new = Object.values(allProducts.products);
 
     if (!singleProduct || !singleProduct.products) {
@@ -131,25 +131,25 @@ function Carts() {
     // const singleObj = singleProduct.products[productId].images
     // for(const obj in singleObj){
     // console.log(singleObj[obj].url)
-    console.log('&&&&&&&&&7singleProduct', singleProduct)
-    console.log('singleProduct', productId)
-    console.log(singleProduct)
+    // console.log('&&&&&&&&&7singleProduct', singleProduct)
+    // console.log('singleProduct', productId)
+    // console.log(singleProduct)
 
-    console.log('#######singleProduct', singleProduct.products[productId])
+    // console.log('#######singleProduct', singleProduct.products[productId])
 
     // Problem here for product images
     const allProductImages = singleProduct.images || [];
-    console.log('allProductImages', allProductImages)
+    // console.log('allProductImages', allProductImages)
 
     if (!allProductImages) {
         return <div className="loading-text">sss... </div>;
     }
 
-    if(singleProduct[productId] && singleProduct[productId].images) {
-        singleProduct[productId].images.forEach(image => {
-          console.log(image.url);
-        });
-    }
+    // if(singleProduct[productId] && singleProduct[productId].images) {
+    //     singleProduct[productId].images.forEach(image => {
+    //     //   console.log(image.url);
+    //     });
+    // }
 
     return (
         <div className='shopping-cart-container'>
