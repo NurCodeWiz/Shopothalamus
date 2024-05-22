@@ -16,13 +16,13 @@ function UpdateReview() {
         dispatch(reviewsByProduct(productId));
     }, [dispatch, productId]);
 
-    console.log('productId', productId)
+    // console.log('productId', productId)
 
     if (!reviewList || !reviewList.reviews)
     {
         return <div className="review-loading">Loading...</div>;
     }
-    console.log('reviewList', reviewList)
+    // console.log('reviewList', reviewList)
 
     if (!Object.values(reviewList.reviews).length) {
         return <div className="review-loading">No reviews to update...</div>;
@@ -35,7 +35,7 @@ function UpdateReview() {
         }
     }
 
-    console.log('reviewDetails', reviewDetails)
+    // console.log('reviewDetails', reviewDetails)
     let actionLabel = 'Update';
     return (
         <div className='review-form-container'>

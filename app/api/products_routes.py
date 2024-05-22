@@ -10,7 +10,7 @@ products_routes = Blueprint("products_routes", __name__)
 @products_routes.route('/')
 def get_all_products():
     search_name = request.args.get('name')
-    print("SEARCH FOR:", search_name)
+    # print("SEARCH FOR:", search_name)
 
     query = Product.query
 
@@ -62,7 +62,7 @@ def create_new_product():
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("newproduct")
+    # print("newproduct")
 
     if form.validate_on_submit():
         new_product = Product(

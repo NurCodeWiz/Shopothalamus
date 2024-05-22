@@ -21,7 +21,7 @@ export default function AllProducts() {
     const productList = search
         ? searchResults ? Object.values(searchResults) : []
         : products ? Object.values(products) : [];
-    console.log("Allproducts:", productList);
+    // console.log("Allproducts:", productList);
 
     return (
         <div className="catalog-wrapper">

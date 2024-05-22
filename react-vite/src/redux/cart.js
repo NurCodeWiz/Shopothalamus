@@ -5,7 +5,7 @@ const REMOVE_CART = 'carts/remove';
 
 // ACTION TYPES
 const getAllCarts = (carts) => {
-    console.log('Dispatching all carts:', carts.Carts.length);
+    // console.log('Dispatching all carts:', carts.Carts.length);
     return{
         type: GET_ALL_USERS_CARTS,
         carts
@@ -42,7 +42,7 @@ export const allUserCartsThunk = () => async (dispatch) => {
         throw new Error('Failed to get user carts');
     }
     const data = await response.json();
-    console.log('Fetched all carts:', data);  // Log fetched data
+    // console.log('Fetched all carts:', data);  // Log fetched data
     dispatch(getAllCarts(data));
     return data;
 }

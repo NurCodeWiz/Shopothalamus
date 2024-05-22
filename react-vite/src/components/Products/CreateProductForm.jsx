@@ -60,7 +60,7 @@ export default function CreateProductForm() {
             }
 
             const formData = formDataFromObject(payload);
-            console.log(payload)
+            // console.log(payload)
 
 
             const data = await dispatch(createNewProduct(formData))
@@ -118,11 +118,6 @@ export default function CreateProductForm() {
                     />
                     {errs.prc && <p className="form-error">{errs.prc}</p>}
                 </div>
-                {/* <p>Add an Image.</p>
-                <p>*Image must have approved file extension: webp, png, jpg, pdf, jpeg, gif</p>
-                <ImageProduct setFile={setFl} />
-                { loadingImg && <p>Loading...</p> }
-                {errs.fl && <p className="form-error">{errs.fl}</p>} */}
                 <div>
                 <p>Add an Image:</p>
                 <p className="image-upload-instructions">*Image must have an approved file extension: webp, png, jpg, pdf, jpeg, gif.</p>

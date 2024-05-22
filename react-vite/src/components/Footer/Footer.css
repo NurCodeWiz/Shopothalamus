@@ -1,0 +1,107 @@
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .footer-wrapper {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+.content {
+    flex: 1;
+    /* padding: 20px; */
+  }
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    color: rgb(119, 114, 114);
+    padding: 10px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    border-top: 5px solid #fda085;
+    border-bottom: 5px solid #f6d365;
+    height: 170px;
+  }
+
+.footer-top {
+    margin-bottom: 10px;
+  }
+
+.tagline {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+
+.footer-branding {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color:rgb(119, 114, 114);;
+  }
+
+.team-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+.nur {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 40%;
+    border: 3px solid #fff;
+    margin-left: 10PX;
+  }
+
+.logo {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+.social-links a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 20px;
+  }
+
+.tech-icons i {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+    }
+    .footer-content > div {
+      margin: 10px 0;
+    }
+}
