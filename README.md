@@ -8,9 +8,11 @@
 Shopothalamus, a full-stack application inspired by Amazon, is an e-commerce platform where users can buy and sell a wide range of unique products and items.
 
 ## Database Schema Design
-![db-schema]
 
-[db-schema]: ./react-vite/images/db-schema.png
+
+<div style="max-width: 600px; margin: auto;">
+    <img src="./react-vite/images/db-schema.png" alt="Database Schema" style="width: 100%;"/>
+</div>
 
 ## Get Started
 
@@ -65,19 +67,96 @@ Shopothalamus, a full-stack application inspired by Amazon, is an e-commerce pla
 - AWS SDK
 
 ## Features
-1. **Authentication**
+
+1. **Landing Page**
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+11.22.46+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+2. **Categories Page**
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+7.52.27+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+3. **Search**
+
+   - Users can search for products name using the Search feature.
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+11.31.45+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+
+
+4. **All Products Page**
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+11.25.14+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+
+5. **Authentication**
    - New account creation, log in, and log out functionalities.
    - Guest/demo login option for trying out the site.
    - Users must be logged in to access orders, wish lists, or create reviews.
 
-2. **Reviews**
+--------------------------------------------------------------------------------------------------------
+
+6. **Reviews**
    - CRUD operations for product reviews.
    - Users can create new reviews on items.
+   - Users can add an image to their review.
    - All users can read existing reviews on items.
    - Review creators can update and delete their own reviews.
 
-3. **Cart**
+   <img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.28.27+PM.png">
+
+   - Update review page
+
+   <img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.28.41+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+
+7. **Cart**
    - CRUD operations for the shopping cart.
    - Users can create a cart.
    - Users can view the items in their shopping cart.
-   - Users can update or delete items in their shopping cart.
+   - Users can add, update quantities, and remove products from their carts.
+   - Total price will be displayed on the shopping cart page.
+   - Items that are in the cart will be cleared from the cart after payment is complete.
+
+
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.30.31+PM.png">
+
+8. **Checkout Page**
+   - Users can checkout their carts and will be directed to the checkout page.
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.30.57+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+9. **Orders**
+   - CRD operations for orders.
+   - Users can see open and past orders.
+   - Users can submit their current cart as an order.
+   - Users can cancel open orders.
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+7.20.34+PM.png">
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+7.23.57+PM.png">
+
+--------------------------------------------------------------------------------------------------------
+
+10. **Products**
+   - CRUD operations for product listings.
+   - Users can create new product listings.
+   - Users can view existing listings.
+   - Creators can add and delete product images for their own listings.
+   - Creators can update or delete their own product listings.
+
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+7.34.43+PM.png">
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.33.14+PM.png">
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+6.33.23+PM.png">
+
+<img width="700" src="https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-21+at+7.37.10+PM.png">

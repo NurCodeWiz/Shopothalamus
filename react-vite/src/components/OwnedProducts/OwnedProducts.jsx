@@ -53,7 +53,7 @@ export default function OwnedProducts() {
 
     return (
         <div className="products-page">
-            <h2>Manage your listings</h2>
+            <h2>Manage Your Listings</h2>
             <div className="products-list">
                 {filteredProducts && Object.values(filteredProducts).map(product => (
                     <div key={product.id} className="each-product">

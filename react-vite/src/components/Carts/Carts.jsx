@@ -155,10 +155,10 @@ function Carts() {
         <div className='shopping-cart-container'>
             <h1 className='cart-title'>Shopping Cart</h1>
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/giphy+(1).gif"
+                src="https://nurawsbucket.s3.amazonaws.com/addedtoyourcart.gif"
                 alt="Decorative"
                 className="image_productDetails"
-                />
+            />
             {initiateCheckout && <p>Thank you for your purchase!</p>}
             {showModalMessage && initiateCheckout && <p>Closing shortly... </p>}
             <hr className="cart-divider"></hr>
@@ -186,15 +186,6 @@ function Carts() {
                         </NavLink>
                         <div className='item-quantity-update'>
                             Quantity: {item?.quantity}
-                            {/* <form onSubmit={(e) => updateCartItem(e, item?.id, item?.product_id)} className='quantity-update-form'>
-                                <select onChange={(e) => setQuantitySelected(e.target.value)} className='quantity-select'>
-                                    <option value='' disabled selected hidden>Qty:{item?.quantity}</option>
-                                    {Array.from({ length: 10 }, (_, i) => i + 1).map(number => (
-                                        <option key={number} value={number}>Qty: {number}</option>
-                                    ))}
-                                </select>
-                                <button type='submit' className='cart-button update-button'>Update</button>
-                            </form> */}
                             <select
                                 onChange={(e) => updateCartItem(e.target.value, item?.id, item?.product_id)}
                                 className='quantity-select'

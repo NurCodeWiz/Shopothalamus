@@ -8,6 +8,7 @@ const UPDATE_PRODUCT = "productsReducer/UPDATE_PRODUCT"
 const DELETE_PRODUCT_IMAGE = 'productsReducer/DELETE_PRODUCT_IMAGE'
 const DELETE_PRODUCT = "productsReducer/DELETE_PRODUCT"
 const RESTART_CATEGORY = 'productsReducer/RESTART_CATEGORY'
+const ADD_SEARCH_RESULTS = 'productsReducer/ADD_SEARCH_RESULTS'
 
 function allProducts(products) {
     return {
@@ -68,13 +69,27 @@ function restartCategory() {
         type: RESTART_CATEGORY
     }
 }
-
+const addSearchResults = (results) => ({
+    type: ADD_SEARCH_RESULTS,
+    results
+})
 
 export const getAllProducts = () => async(dispatch) => {
     const response = await fetch('/api/products/')
     if (response.ok) {
         const data = await response.json()
         dispatch(allProducts(data))
+    } else {
+        const errors = await response.json()
+        return errors;
+    }
+}
+
+export const getSearchProducts = (search) => async(dispatch) => {
+    const response = await fetch(`/api/products/?name=${search}`)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(addSearchResults(data))
     } else {
         const errors = await response.json()
         return errors;
@@ -246,7 +261,9 @@ export default function productsReducer(state = initialState, action) {
 
         case RESTART_CATEGORY:
             return {...state, categoryResults: null}
-
+        case ADD_SEARCH_RESULTS: {
+            return { ...state, searchResults: action.results }
+        }
         default:
             return state;
     }

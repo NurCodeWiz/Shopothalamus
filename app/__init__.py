@@ -15,6 +15,7 @@ from .api.product_image_routes import product_images
 from .api.cart_routes import cart_routes
 from .api.orders_routes import orders
 
+
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
 # Setup login manager
@@ -45,6 +46,7 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
+# start_background_task()
 
 
 # Since we are deploying with Docker and Flask,
