@@ -145,6 +145,7 @@ function Checkout() {
             <section className="delivery-info">
                 <h4>Delivery Information:</h4>
                 <p>Delivery date: {formattedDeliveryDate}</p>
+                <p>FREE 2-day Delivery</p>
                 <p>Order within the next {remainingHours} hours and {remainingMinutes} minutes for delivery by {formattedDeliveryDate}.</p>
             </section>
             <section className="payment-method">
