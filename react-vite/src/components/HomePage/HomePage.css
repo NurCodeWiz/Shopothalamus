@@ -76,3 +76,26 @@
         height: 100%;
         object-fit: cover;
     }
+
+    @media (max-width: 1024px) and (min-width: 600px) {
+        .smaller-image-card {
+            display: none;
+        }
+        .banner-image-container {
+            width: 80%;
+        }
+    }
+
+
+    @media (max-width: 600px) {
+        .banner-image-container {
+            width: 100%;
+        }
+        .smaller-image-card {
+            display: none;
+        }
+        .all-products-button {
+            font-size: 10px;
+            padding: 3px 3px;
+        }
+    }
