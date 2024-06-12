@@ -2,18 +2,43 @@
 import { NavLink,useNavigate } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import ProfileButton from "./ProfileButton";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { BiSearchAlt2 } from "react-icons/bi";
 import "./Navigation.css";
 import { FaLocationDot } from "react-icons/fa6";
-import { useRef, useState } from "react";
-
+import { useRef, useState, useEffect } from "react";
+import {allUserCartsThunk} from "../../redux/cart"
 function Navigation() {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const [search, setSearch] = useState("");
   const [searchFocus, setSearchFocus] = useState(false);
   const searchInput = useRef();
   const navigate = useNavigate();
+  const cartItems = useSelector(state => state.cartItems.CartItems);
+  // console.log("Cart Data: ", cart);
+  // console.log("Cart Items Data: ", cartItems);
+
+  let totalQuantity = 0;
+  if (cartItems && cartItems.length > 0) {
+    cartItems.forEach(cartItem => {
+      // console.log('Cart Item Quantity: ', cartItem.quantity);
+      totalQuantity += cartItem.quantity;
+    });
+  }
+  // console.log("Total Quantity: ", totalQuantity);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(allUserCartsThunk(user.id));
+    }
+  }, [dispatch, user]);
+
+  useEffect(() => {
+    if (user){
+    dispatch(allUserCartsThunk(user?.id));
+  }
+}, [dispatch, user]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -67,6 +92,7 @@ function Navigation() {
               <div className='user-address'> <FaLocationDot /> USA </div>
             <NavLink to='/carts' className='cart-text'>
               <BsCart className="cart-favicon"/> Cart
+              <span className="quantity-icon">{totalQuantity.toString()}</span>
             </NavLink>
           </div>
         )}
