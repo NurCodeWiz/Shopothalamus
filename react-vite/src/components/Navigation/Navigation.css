@@ -44,6 +44,11 @@
   left: -10px;
   z-index: 1;
 }
+.logo-imgx {
+  width: 24px;
+  position: relative;
+  z-index: 1;
+}
 
 .search-container {
   display: flex;
@@ -217,6 +222,8 @@
 
 .cat-li:hover {
   background-color: #485769;
+  transform: scale(1.04);
+
 }
 
 

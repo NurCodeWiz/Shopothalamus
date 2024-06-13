@@ -57,7 +57,11 @@ function Navigation() {
       <ul className='navigation-ul-container'>
         <li className="logo-container">
          <NavLink to="/" className='logo-navigation-container'>
-            <div className="logo-text">ShopoThalamus</div>
+            {/* <div className="logo-text">ShopoThalamus</div> */}
+            <div className="logo-text">
+              <img className="logo-imgx" src="/logo.png" alt="Nur's icon" />
+              hopoThalamus
+            </div>
             <img
               className="logo-img"
               src="https://rainforest-dev.s3.us-west-1.amazonaws.com/amazonArrow.png"
