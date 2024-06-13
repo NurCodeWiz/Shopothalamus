@@ -10,12 +10,21 @@ function Footer() {
     <div className="footer-wrapper">
       <div className="footer-content">
         <div className="footer-top">
-          <h1 className="footer-branding">ShopoThalamus</h1>
-          <img
+          {/* <h1 className="footer-branding">ShopoThalamus</h1> */}
+          <div className="logo-texta">
+              <img className="logo-imgy" src="/logo.png" alt="Nur's icon" />
+              hopoThalamus
+          </div>
+            <img
+              className="logo-img"
+              src="https://rainforest-dev.s3.us-west-1.amazonaws.com/amazonArrow.png"
+              alt="logo"
+            />
+          {/* <img
             className="logo"
             src="/logo.png"
             alt="Nur's icon"
-          />
+          /> */}
           <p className="tagline">Bringing creativity and community together.</p>
         </div>
 
@@ -42,6 +51,11 @@ function Footer() {
 
         <div className="footer-bottom">
           <div className="technologies-used">
+             <img
+            className="logo"
+            src="/logo.png"
+            alt="Nur's icon"
+          />
             <h3>Powered by:</h3>
             <div className="tech-icons">
               <i className="fab fa-react"><FaReact /></i>

@@ -20,6 +20,9 @@
   margin-top: 2%;
   margin-left: 5px;
 }
+.logo-container:hover {
+  transform: scale(1.08);
+}
 
 .logo-navigation-container {
   display: flex;
@@ -42,6 +45,11 @@
   position: relative;
   top: -40px;
   left: -10px;
+  z-index: 1;
+}
+.logo-imgx {
+  width: 16px;
+  position: relative;
   z-index: 1;
 }
 
@@ -133,17 +141,69 @@
   align-items: center;
   margin-right: 20px;
 }
-.cart-text{
+/* .cart-text{
   color: white;
   margin-right: 50px;
-
-
+  position: relative;
+  align-items: center;
 }
 
 .cart-favicon {
   color: white;
+  margin: auto;
+  padding-top: 34%;
+  padding-bottom: -3%;
+  width: 100%;
+  padding-right: -20px;
+}
+.quantity-icon {
+  color: #f08804;
+  font-size: 14px;
+  font-weight: bold;
+  width: 22px;
+  position: absolute;
+  top: -5px;
+  right: -1px;
+  background-color: #131921;
+  border-radius: 50%;
+  padding: 1px 6px;
+} */
+
+.cart-text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+.cart-text:hover {
+  transform: scale(1.1);
 }
 
+.cart-favicon {
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-icon {
+  color: #f08804;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 50%;
+  padding: 2px 5px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
 .categories-bar {
   background-color: #232f3e;
   width: 100%;
@@ -168,6 +228,8 @@
 
 .cat-li:hover {
   background-color: #485769;
+  transform: scale(1.04);
+
 }
 
 
@@ -191,8 +253,27 @@
   }
 } */
 @media (max-width: 1024px) {
-  .logo-img {
+  /* .logo-img {
     display: none;
+  } */
+
+  .logo-text {
+    font-size: 0.8rem;
+    color: white;
+    top: 30px;
+  }
+
+  .logo-img {
+    width: 100px;
+    position: relative;
+    top: -30px;
+    left: -10px;
+    z-index: 1;
+  }
+  .logo-imgx {
+    width: 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .pc-container {
