@@ -1,25 +1,25 @@
 
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .footer-wrapper {
-    margin-top: 20px;
-    width: 100%;
-  }
+.footer-wrapper {
+  margin-top: 20px;
+  width: 100%;
+}
 
-  #root {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .content {
     flex: 1;
@@ -44,13 +44,17 @@
   }
 
 .footer-top {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
 .tagline {
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: #fff;
+    font-size: 16px;
+    margin-top: -50px;
+    /* color: #fff; */
   }
 
 
@@ -80,10 +84,16 @@
   }
 
 .logo {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
   }
+
+.logo-texta {
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 30px;
+}
 
 .social-links a {
     color: #fff;
