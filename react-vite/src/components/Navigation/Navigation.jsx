@@ -8,6 +8,7 @@ import "./Navigation.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { useRef, useState, useEffect } from "react";
 import {allUserCartsThunk} from "../../redux/cart"
+import {allCartItemsThunk} from "../../redux/cartItems"
 function Navigation() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
@@ -16,29 +17,37 @@ function Navigation() {
   const searchInput = useRef();
   const navigate = useNavigate();
   const cartItems = useSelector(state => state.cartItems.CartItems);
+  const [totalQuantity, setTotalQuantity] = useState(0);
   // console.log("Cart Data: ", cart);
   // console.log("Cart Items Data: ", cartItems);
 
-  let totalQuantity = 0;
-  if (cartItems && cartItems.length > 0) {
-    cartItems.forEach(cartItem => {
-      // console.log('Cart Item Quantity: ', cartItem.quantity);
-      totalQuantity += cartItem.quantity;
-    });
-  }
+  // let totalQuantity = 0;
+  // if (cartItems && cartItems.length > 0) {
+  //   cartItems.forEach(cartItem => {
+  //     // console.log('Cart Item Quantity: ', cartItem.quantity);
+  //     totalQuantity += cartItem.quantity;
+  //   });
+  // }
   // console.log("Total Quantity: ", totalQuantity);
 
-  useEffect(() => {
-    if (user) {
-      dispatch(allUserCartsThunk(user.id));
-    }
-  }, [dispatch, user]);
 
-  useEffect(() => {
-    if (user){
-    dispatch(allUserCartsThunk(user?.id));
+useEffect(() => {
+  if (user){
+   dispatch(allUserCartsThunk(user?.id));
   }
 }, [dispatch, user]);
+
+useEffect(() => {
+  if (cartItems && cartItems.length > 0) {
+    let quantity = 0;
+    cartItems.forEach(cartItem => {
+      quantity += cartItem.quantity;
+    });
+    setTotalQuantity(quantity);
+  } else {
+    setTotalQuantity(0);
+  }
+}, [cartItems]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -46,6 +55,12 @@ function Navigation() {
     navigate(`/products/?name=${query}`);
     setSearch("");
   }
+
+  useEffect(() => {
+    if (user && user.id) {
+      dispatch(allCartItemsThunk(user.id));
+    }
+  }, [dispatch, user]);
 
   // const focusSearch = (e) => {
   //   e.preventDefault();
