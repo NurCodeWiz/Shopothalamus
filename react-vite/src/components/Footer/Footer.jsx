@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer-top">
           {/* <h1 className="footer-branding">ShopoThalamus</h1> */}
           <div className="logo-texta">
-              <img className="logo-imgx" src="/logo.png" alt="Nur's icon" />
+              <img className="logo-imgy" src="/logo.png" alt="Nur's icon" />
               hopoThalamus
           </div>
             <img
