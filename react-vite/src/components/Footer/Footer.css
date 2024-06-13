@@ -52,9 +52,13 @@ body {
   }
 
 .tagline {
-    font-size: 16px;
     margin-top: -50px;
     /* color: #fff; */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color:rgb(119, 114, 114);
   }
 
 
@@ -64,7 +68,7 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    color:rgb(119, 114, 114);;
+    color:rgb(119, 114, 114);
   }
 
 .team-section {
@@ -80,7 +84,7 @@ body {
     object-fit: cover;
     border-radius: 40%;
     border: 3px solid #fff;
-    margin-left: 10PX;
+    margin-left: 10px;
   }
 
 .logo {
@@ -90,7 +94,7 @@ body {
   }
 
 .logo-texta {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: white;
   margin-top: 30px;
 }
@@ -107,6 +111,12 @@ body {
     color: #fff;
 }
 
+.logo-imgy {
+
+  width: 20px;
+  position: relative;
+  z-index: 1;
+}
 @media (max-width: 1024px) {
   .footer-content {
     flex-direction: column;

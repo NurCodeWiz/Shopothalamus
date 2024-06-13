@@ -20,6 +20,9 @@
   margin-top: 2%;
   margin-left: 5px;
 }
+.logo-container:hover {
+  transform: scale(1.08);
+}
 
 .logo-navigation-container {
   display: flex;
@@ -177,6 +180,9 @@
   margin-right: 50px;
   margin-top: 10px;
 }
+.cart-text:hover {
+  transform: scale(1.1);
+}
 
 .cart-favicon {
   color: white;
@@ -247,8 +253,27 @@
   }
 } */
 @media (max-width: 1024px) {
-  .logo-img {
+  /* .logo-img {
     display: none;
+  } */
+
+  .logo-text {
+    font-size: 0.8rem;
+    color: white;
+    top: 30px;
+  }
+
+  .logo-img {
+    width: 100px;
+    position: relative;
+    top: -30px;
+    left: -10px;
+    z-index: 1;
+  }
+  .logo-imgx {
+    width: 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .pc-container {
