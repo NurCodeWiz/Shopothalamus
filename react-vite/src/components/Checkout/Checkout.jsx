@@ -4,6 +4,7 @@ import { addOrderThunk } from "../../redux/orders";
 import { emptyCartThunk } from '../../redux/cart';
 import './Checkout.css';
 import { useCart } from '../../context/CartProvider';
+import { allCartItemsThunk } from '../../redux/cartItems';
 
 function Checkout() {
     const dispatch = useDispatch();
@@ -75,7 +76,8 @@ function Checkout() {
         const created = await dispatch(addOrderThunk(order));
 
         if (created.byId) {
-            dispatch(emptyCartThunk());
+            await dispatch(emptyCartThunk());
+            await dispatch(allCartItemsThunk(currentUser.id));
             setIsOpen(false);
             navigate('/orders');
         }
