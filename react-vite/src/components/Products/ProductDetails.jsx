@@ -39,6 +39,11 @@ export default function ProductDetails() {
     const [quantity, setQuantity] = useState('1')
     // const { setModalContent } = useModal();
     // const [delRev, setDelRev ]= useState(false)
+    const animationImages = [
+        "https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif",
+        "https://nurawsbucket.s3.amazonaws.com/347a421c85f63590d9666b831b2bf06d.gif"
+    ];
+    const [animationImageIndex, setAnimationImageIndex] = useState(0);
     useEffect(() => {
         const today = new Date();
         const deliveryDate = new Date(today);
@@ -72,6 +77,14 @@ export default function ProductDetails() {
     useEffect(() => {
         dispatch(getSingleProduct(productId)) // Refresh handling on review change
     }, [dispatch, productId, reviews]);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setAnimationImageIndex(prevIndex => (prevIndex + 1) % animationImages.length);
+        }, 5000);
+
+        return () => clearInterval(intervalId);
+    }, [animationImages.length]);
 
 
     if (!products || !products[productId]) {
@@ -280,7 +293,8 @@ export default function ProductDetails() {
             </div>
             <div className="pd-col-right">
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif"
+                // src="https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif"
+                src={animationImages[animationImageIndex]}
                 alt="Decorative"
                 className="image_productDetails2"
                 />
