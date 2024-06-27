@@ -39,6 +39,11 @@ export default function ProductDetails() {
     const [quantity, setQuantity] = useState('1')
     // const { setModalContent } = useModal();
     // const [delRev, setDelRev ]= useState(false)
+    const animationImages = [
+        "https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif",
+        "https://nurawsbucket.s3.amazonaws.com/347a421c85f63590d9666b831b2bf06d.gif"
+    ];
+    const [animationImageIndex, setAnimationImageIndex] = useState(0);
     useEffect(() => {
         const today = new Date();
         const deliveryDate = new Date(today);
@@ -72,6 +77,14 @@ export default function ProductDetails() {
     useEffect(() => {
         dispatch(getSingleProduct(productId)) // Refresh handling on review change
     }, [dispatch, productId, reviews]);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setAnimationImageIndex(prevIndex => (prevIndex + 1) % animationImages.length);
+        }, 5000);
+
+        return () => clearInterval(intervalId);
+    }, [animationImages.length]);
 
 
     if (!products || !products[productId]) {
@@ -207,7 +220,12 @@ export default function ProductDetails() {
     }
     avg_star = avg_star / allProductReviews.length
     // console.log('avg_star', avg_star)
-
+    const smallerImageStyle = {
+        maxWidth: '150px',
+        maxHeight: '150px',
+        transform: 'rotate(20deg)',
+        marginTop: '50px'
+    };
     return (
         <div className="pd-col-wrap page-content">
             <div className="pd-col-left">
@@ -280,9 +298,11 @@ export default function ProductDetails() {
             </div>
             <div className="pd-col-right">
             <img
-                src="https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif"
+                // src="https://nurawsbucket.s3.amazonaws.com/curiouspiyuesh-piyueshmodi.gif"
+                src={animationImages[animationImageIndex]}
                 alt="Decorative"
                 className="image_productDetails2"
+                style={animationImageIndex === 1 ? smallerImageStyle : {}}
                 />
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">

@@ -28,7 +28,7 @@
   border-radius: 8px;
   padding: 10px;
   width: 180px;
-  top: 98px;
+  top: 91px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
@@ -118,11 +118,16 @@
 }
 
 #logout-button:hover {
-  background-color: #e84118;
+  background-color: black;
 }
 
 @media (max-width: 768px) {
   .profile-container {
     margin-left: 0;
+  }
+  .profile-dropdown {
+    top: 40px;
+    left:200px
+
   }
 }

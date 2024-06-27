@@ -394,6 +394,24 @@
     justify-content: center;
 
   }
+  .logo-text {
+    font-size: 1.2rem;
+    color: white;
+    top: 30px;
+  }
+
+  .logo-img {
+    width: 130px;
+    position: relative;
+    top: -40px;
+    left: -10px;
+    z-index: 1;
+  }
+  .logo-imgx {
+    width: 16px;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media (max-width: 480px) {
