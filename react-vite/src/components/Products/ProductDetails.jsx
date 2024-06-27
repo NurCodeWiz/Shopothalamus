@@ -220,7 +220,12 @@ export default function ProductDetails() {
     }
     avg_star = avg_star / allProductReviews.length
     // console.log('avg_star', avg_star)
-
+    const smallerImageStyle = {
+        maxWidth: '150px',
+        maxHeight: '150px',
+        transform: 'rotate(20deg)',
+        marginTop: '50px'
+    };
     return (
         <div className="pd-col-wrap page-content">
             <div className="pd-col-left">
@@ -297,6 +302,7 @@ export default function ProductDetails() {
                 src={animationImages[animationImageIndex]}
                 alt="Decorative"
                 className="image_productDetails2"
+                style={animationImageIndex === 1 ? smallerImageStyle : {}}
                 />
                 {singleProduct.provider_id !== user?.id ? null :
                     <div className="pd-provider-btns">
