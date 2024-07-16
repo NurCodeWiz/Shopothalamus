@@ -127,7 +127,13 @@
   }
   .profile-dropdown {
     top: 40px;
-    left:200px
-
+    left:200px;
+    width: 150px;
+  }
+  .profile-dropdown li {
+    list-style: none;
+    padding: 5px 15px 0px;
+    font-size: 12px;
+    font-weight: 300;
   }
 }
