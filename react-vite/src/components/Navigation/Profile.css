@@ -127,7 +127,31 @@
   }
   .profile-dropdown {
     top: 40px;
-    left:200px
+    left:200px;
+    width: 150px;
+  }
+  .profile-dropdown li {
+    list-style: none;
+    padding: 5px 15px 0px;
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+@media (max-width: 480px) {
+  .profile-dropdown {
+    top: 40px;
+    left:200px;
+    width:112px;
 
   }
+  .pc-links {
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.40rem;
+    cursor: pointer;
+    background-color: rgb(59, 57, 57);
+  }
+
+
 }
