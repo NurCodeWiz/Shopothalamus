@@ -373,7 +373,7 @@ span {
 }
 
 .add-to-cart-btn,
-.details-add-cart-btn {
+.details-add-cart-btn, .new-review-button {
     list-style-type: none;
     background-color: #007bff;
     color: white;
@@ -389,7 +389,7 @@ span {
 }
 
 .add-to-cart-btn:hover,
-.details-add-cart-btn:hover {
+.details-add-cart-btn:hover,.new-review-button:hover {
     background-color: #0056b3;
     color: white;
     border: none;
