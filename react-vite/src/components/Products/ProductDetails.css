@@ -395,6 +395,16 @@ span {
     border: none;
 }
 
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .sec-pricing {
+      width: 140px;
+      height: 160px;
+      position: relative;
+      right: auto;
+      bottom: auto;
+  }
+}
+
 
 @media (max-width: 1024px) {
   .pd-col-wrap {
@@ -402,7 +412,7 @@ span {
   }
   .sec-pricing {
       width: 140px;
-      height: 120px;
+      height: 130px;
       margin: 10px auto;
       position: relative;
       right: auto;
@@ -425,13 +435,13 @@ span {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .pd-col-wrap {
       flex-direction: column;
   }
   .sec-pricing {
       width: 140px;
-      height: 120px;
+      height: 130px;
       margin: 10px auto;
   }
   .symbol-currency {
