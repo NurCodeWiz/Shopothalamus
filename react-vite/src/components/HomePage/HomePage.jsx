@@ -53,7 +53,7 @@ export default function FeaturedPage() {
             <div className="banner-image-container">
                 <img src={bannerImageUrl} alt="Banner" className="banner-image" />
                 <div className="all-products-button-container">
-                  <button onClick={() => navigate('/products')} className="all-products-button">View all products</button>
+                  <button onClick={() => navigate('/products')} className="all-products-button">View All Products</button>
                 </div>
             </div>
             <div className="smaller-image-card right-image-top" style={{ top: '25%' }}>
