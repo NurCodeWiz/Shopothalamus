@@ -95,15 +95,17 @@
   position: absolute;
   height: 100%;
   right: 0;
-  background-color: white;
-  color: grey;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
+  color: white;
+  border-top: 2px solid #f9d423;
+  border-bottom: 2px solid #f9d423;
   border-left: none;
-  border-right: 1px solid grey;
+  border-right: 2px solid #ff4e50;
   border-radius: 0 5px 5px 0;
   padding: 5px 8px;
   margin: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
 }
 
 .search-btn.search-focus {
@@ -115,11 +117,13 @@
   outline: none;
 }
 
+
 .search-btn:hover {
-  background-color: #d3d3d3;
-  color: black;
-  border:none;
+  background-image: linear-gradient(to right, #ff4e50 0%, #f9d423 100%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+  transform: scale(1.05);
 }
+
 
 .logged-user-navigation-bar {
   display: flex;
