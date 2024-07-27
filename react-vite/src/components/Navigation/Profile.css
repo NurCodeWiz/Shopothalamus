@@ -24,7 +24,7 @@
   display: none;
   position: absolute;
   right: 0;
-  background: linear-gradient(to bottom right, #151514, #d8d5d2);
+  background: linear-gradient(to bottom right, #0077cc, #ff6600);
   border-radius: 8px;
   padding: 10px;
   width: 180px;
@@ -97,7 +97,7 @@
 }
 
 .pc-links:hover, .pc-manage:hover, .pc-new-listing:hover {
-  background-color: #0056b3;
+  background-color: #ffa500;
   transform: translateX(2px);
   color: #fff;
 }
