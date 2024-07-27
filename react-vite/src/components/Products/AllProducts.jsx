@@ -25,7 +25,7 @@ export default function AllProducts() {
 
     return (
         <div className="catalog-wrapper">
-            <h2>All products</h2>
+            <h2>All Products</h2>
             <div className="catalog-grid">
                 {!products ? null : !productList.length ? 'No products found...' : productList.map(product => (
                     <div key={product.id} className="catalog-item">

@@ -14,7 +14,11 @@ export default function FeaturedPage() {
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.20+PM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.08+PM.png",
         "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.10.02+PM.png",
-        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.09.48+PM.png"
+        "https://nurawsbucket.s3.amazonaws.com/Screen+Shot+2024-05-01+at+8.09.48+PM.png",
+        "https://nurawsbucket.s3.amazonaws.com/10-53-53-213_512.gif",
+        "https://nurawsbucket.s3.amazonaws.com/0a4f1265-c578-4014-bb92-67f7efa5038a.gif",
+        "https://nurawsbucket.s3.amazonaws.com/200w+(2).gif",
+        "https://nurawsbucket.s3.amazonaws.com/brain-running-away-rf00bfrc2jz0vsuv.gif"
     ];
 
     // Helper function to generate four unique indices
@@ -49,7 +53,7 @@ export default function FeaturedPage() {
             <div className="banner-image-container">
                 <img src={bannerImageUrl} alt="Banner" className="banner-image" />
                 <div className="all-products-button-container">
-                  <button onClick={() => navigate('/products')} className="all-products-button">View all products</button>
+                  <button onClick={() => navigate('/products')} className="all-products-button">View All Products</button>
                 </div>
             </div>
             <div className="smaller-image-card right-image-top" style={{ top: '25%' }}>
